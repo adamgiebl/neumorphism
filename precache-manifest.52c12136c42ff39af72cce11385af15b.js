@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "da755c278d7780e07bd4670c8ef69586",
+    "revision": "471c2d93cf6d197a1ec9eebf7e2b13dd",
     "url": "/SoftUI/index.html"
   },
   {
