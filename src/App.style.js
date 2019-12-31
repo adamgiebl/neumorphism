@@ -60,18 +60,20 @@ export const ShapeSwitch = styled.div`
   button {
     flex-grow: 1;
     padding: 10px 15px;
-    background: #30302F;
-    color: #F6F5F7;
+    font-size: 13px;
+    background: var(--textColor);
+    color: var(--textColorOpposite);
     cursor: pointer;
     outline: 0;
     border: none;
+    opacity: 0.8
 
     &:first-child {
       //border-right: 2px solid var(--textColor);
     }
 
     &.active {
-      background: #1D1D1B;
+      opacity: 1
     }
   }
 `

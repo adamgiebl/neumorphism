@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import colorLuminance, { getContrast } from "./lightendarken";
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import css from "react-syntax-highlighter/dist/esm/languages/prism/css";
-import { solarizedlight as atomLight } from "react-syntax-highlighter/dist/esm/styles/prism/";
+import { solarizedlight as Light, atomDark as Dark } from "react-syntax-highlighter/dist/esm/styles/prism/";
 import * as s from "./App.style";
 
 SyntaxHighlighter.registerLanguage("css", css);
@@ -14,7 +14,8 @@ class App extends Component {
     radius: 30,
     shape: true,
     blur: 60,
-    activeLightSource: 0
+    activeLightSource: 0,
+    colorDifference: 0.15
   };
 
   softElement = React.createRef();
@@ -24,6 +25,7 @@ class App extends Component {
 
   lightColor = "";
   darkColor = "";
+  theme = true;
 
   codeString = `background: linear-gradient(145deg);
 box-shadow: 30px 30px var(--blur) var(--lightColor), 
@@ -41,9 +43,9 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
     }
   }
 
-  toggleShape = () => {
+  setShape = (e) => {
     this.setState({
-      shape: !this.state.shape
+      shape: e.target.dataset.value
     });
   };
 
@@ -61,13 +63,13 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
   }
 
   render() {
-    const { blur, color, size, radius, shape, activeLightSource } = this.state;
+    const { blur, color, size, radius, shape, activeLightSource, colorDifference } = this.state;
     if (this.softElement.current) {
       let angle = 145;
       let positionX = 30;
       let positionY = 30;
-      const darkColor = colorLuminance(color, -0.15);
-      const lightColor = colorLuminance(color, 0.15);
+      const darkColor = colorLuminance(color, colorDifference * -1);
+      const lightColor = colorLuminance(color, colorDifference);
       const firstGradientColor = colorLuminance(color, shape ? 0.07 : -0.1);
       const secondGradientColor = colorLuminance(color, shape ? -0.1 : 0.07);
       switch (activeLightSource) {
@@ -106,6 +108,7 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
         --angle: ${angle}deg;
         --blur: ${blur}px;
         --textColor: ${getContrast(color)};
+        --textColorOpposite: ${color};
         --baseColor: ${color};
         --darkColor: ${darkColor};
         --lightColor: ${lightColor};
@@ -114,7 +117,8 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
       `;
       this.softElement.current.style.setProperty("--size", size + "px");
       this.softElement.current.style.setProperty("--radius", radius + "px");
-
+      if (getContrast(color) === '#001f3f') { this.theme = true }
+      else { this.theme = false }
       this.codeString = `border-radius: ${radius === "200" ? '50%' : radius + 'px'};
 background: linear-gradient(${angle}deg, ${firstGradientColor}, ${secondGradientColor});
 box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor}, 
@@ -194,6 +198,18 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
               />
             </s.Row>
             <s.Row>
+              <label htmlFor="colorDifference" style={{ paddingRight: "10px" }}>Colors: </label>
+              <s.Slider
+                type="range"
+                name="colorDifference"
+                value={colorDifference}
+                onChange={this.handleOnChange}
+                min="0.01"
+                max="0.6"
+                step="0.01"
+              />
+            </s.Row>
+            <s.Row>
             <label htmlFor="radius" style={{ paddingRight: "10px" }}>Radius: </label>
             <s.Slider
               type="range"
@@ -222,20 +238,22 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
               <s.ShapeSwitch>
                 <button
                   className={shape ? "active" : ""}
-                  onClick={this.toggleShape}
+                  onClick={this.setShape}
+                  data-value=" "
                 >
                   Concave
                 </button>
                 <button
                   className={!shape ? "active" : ""}
-                  onClick={this.toggleShape}
+                  onClick={this.setShape}
+                  data-value=""
                 >
                   Convex
                 </button>
               </s.ShapeSwitch>
             </s.Row>
             <s.CodeBlock>
-              <SyntaxHighlighter language="css" style={atomLight}>
+              <SyntaxHighlighter language="css" style={this.theme ? Dark : Light}>
                 {this.codeString}
               </SyntaxHighlighter>
             </s.CodeBlock>
