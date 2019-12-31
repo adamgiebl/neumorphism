@@ -1,8 +1,8 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Neumorphism",
+  "name": "Neumorphism CSS code generator",
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#001f3f",
+  "background_color": "#F6F5F7"
 }
