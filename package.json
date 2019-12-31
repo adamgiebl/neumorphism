@@ -4,6 +4,7 @@
   "homepage": "http://adamgiebl.github.io/SoftUI",
   "private": true,
   "dependencies": {
+    "@material/slider": "^4.0.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
