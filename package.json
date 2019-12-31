@@ -1,7 +1,7 @@
 {
   "name": "softui",
   "version": "0.1.0",
-  "homepage": "http://adamgiebl.github.io/SoftUI",
+  "homepage": "https://neumorphism.io",
   "private": true,
   "dependencies": {
     "@material/slider": "^4.0.0",

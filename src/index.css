@@ -6,6 +6,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0;
+    padding: 0;
 }
 h1 {
     font-weight: normal;
@@ -76,17 +78,17 @@ input[type="color"]::-webkit-color-swatch {
 
 .title {
     text-align: center;
-    margin: 10px 0;
+    margin: 20px 0;
     z-index: 122;
 }
 .main-heading {
-    margin-bottom: 0px;
-    padding-bottom: 0px;
+    margin: 0;
     font-weight: bold;
 }
 h2 {
-    margin-top: 4px;
     font-weight: normal;
+    margin: 0;
+    margin-top: 5px;
 }
 
 input[type=range] {

@@ -9,9 +9,9 @@ SyntaxHighlighter.registerLanguage("css", css);
 
 class App extends Component {
   state = {
-    color: "",
+    color: "#aab7ea",
     size: 300,
-    radius: 30,
+    radius: 80,
     shape: true,
     blur: 60,
     activeLightSource: 0,
@@ -58,7 +58,7 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
   };
 
   componentDidMount() {
-    this.setState({ color: "#968bf9" });
+    this.setState({ color: "#aab7ea" });
     this.lightSources = [...document.getElementsByClassName("light-source")];
   }
 
