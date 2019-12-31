@@ -54,7 +54,6 @@ export const ShapeSwitch = styled.div`
   overflow: hidden;
   border-radius: 3px;
   flex-grow: 1;
-  //border: 2px solid var(--textColor);
 
 
   button {
