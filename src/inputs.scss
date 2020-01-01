@@ -5,7 +5,7 @@ input[type="range"] {
   background-color: transparent;
   position: relative;
 
-  @media only screen and (max-width: 400px) {
+  @media only screen and (max-width: 410px) {
     position: unset;
   }
 
@@ -31,7 +31,7 @@ input[type="range"] {
     -webkit-appearance: none;
     margin-top: -5px;
   }
-  &:hover, &:active, &:focus {
+  &:hover, &:active, &:focus, &:focus-within {
     &::after {
       content: attr(value) "px";
       position: absolute;
@@ -43,7 +43,7 @@ input[type="range"] {
       padding: 10px;
       background: var(--textColor);
 
-      @media only screen and (max-width: 400px) {
+      @media only screen and (max-width: 410px) {
         right: 15px;
         top: 15px;
         left: unset;
@@ -63,13 +63,13 @@ input[type="range"] {
       transform: translateY(-50%);
       left: 103%;
 
-      @media only screen and (max-width: 400px) {
+      @media only screen and (max-width: 410px) {
         display: none;
       }
     }
   }
   &[name="colorDifference"] {
-    &:hover {
+    &:hover, &:active, &:focus {
       &::after {
         content: attr(value);
       }

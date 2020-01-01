@@ -221,6 +221,18 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
               />
             </div>
             <div className="row">
+              <label htmlFor="radius">Radius: </label>
+              <input
+                type="range"
+                name="radius"
+                value={radius}
+                onChange={this.handleOnChange}
+                min="0"
+                max="200"
+                step="1"
+              />
+            </div>
+            <div className="row">
               <label htmlFor="spread">Spread: </label>
               <input
                 type="range"
@@ -245,18 +257,6 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
               />
             </div>
             <div className="row">
-              <label htmlFor="radius">Radius: </label>
-              <input
-                type="range"
-                name="radius"
-                value={radius}
-                onChange={this.handleOnChange}
-                min="0"
-                max="200"
-                step="1"
-              />
-            </div>
-            <div className="row">
               <label htmlFor="blur">Blur: </label>
               <input
                 type="range"
@@ -269,7 +269,7 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
               />
             </div>
             <div className="row">
-              <label htmlFor="blur">Shape: </label>
+              <label htmlFor="shape">Shape: </label>
               <div className="shape-switch">
                 <button
                   className={shape ? "active" : ""}
