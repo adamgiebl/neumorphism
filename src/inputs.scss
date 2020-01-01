@@ -5,6 +5,10 @@ input[type="range"] {
   background-color: transparent;
   position: relative;
 
+  @media only screen and (max-width: 400px) {
+    position: unset;
+  }
+
   &:focus {
     outline: none;
   }
@@ -26,7 +30,6 @@ input[type="range"] {
     cursor: pointer;
     -webkit-appearance: none;
     margin-top: -5px;
-    position: relative;
   }
   &:hover {
     &::after {
@@ -40,9 +43,11 @@ input[type="range"] {
       padding: 10px;
       background: var(--textColor);
 
-      @media only screen and (max-width: 900px) {
-        right: 118%;
+      @media only screen and (max-width: 400px) {
+        right: 15px;
+        top: 15px;
         left: unset;
+        transform: unset;
       }
     }
     &::before {
@@ -58,11 +63,8 @@ input[type="range"] {
       transform: translateY(-50%);
       left: 103%;
 
-      @media only screen and (max-width: 900px) {
-        right: 115%;
-        left: unset;
-        border-right: unset;
-        border-left: 15px solid var(--textColor);
+      @media only screen and (max-width: 400px) {
+        display: none;
       }
     }
   }
