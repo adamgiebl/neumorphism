@@ -13,6 +13,7 @@ class App extends Component {
     size: 300,
     radius: 80,
     shape: true,
+    spread: 30,
     blur: 60,
     activeLightSource: 0,
     colorDifference: 0.15,
@@ -37,6 +38,13 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
       [e.target.name]: e.target.value
     });
   };
+
+  setSpread = e => {
+    this.setState({
+      spread: e.target.value,
+      blur: e.target.value * 2
+    });
+  } 
 
   validateColor = e => {
     if (/^#[0-9A-F]{6}$/i.test(e.target.value)) {
@@ -78,7 +86,7 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
   }
 
   render() {
-    const { blur, color, size, radius, shape, activeLightSource, colorDifference, maxSize } = this.state;
+    const { blur, color, size, radius, shape, spread, activeLightSource, colorDifference, maxSize } = this.state;
     if (this.softElement.current) {
       let angle = 145;
       let positionX = 30;
@@ -89,28 +97,28 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
       const secondGradientColor = colorLuminance(color, shape ? -0.1 : 0.07);
       switch (activeLightSource) {
         case 1:
-          positionX = 30;
-          positionY = 30;
+          positionX = spread;
+          positionY = spread;
           angle = 145;
           break;
         case 2:
-          positionX = -30;
-          positionY = 30;
+          positionX = spread * -1;
+          positionY = spread;
           angle = 225;
           break;
         case 3:
-          positionX = -30;
-          positionY = -30;
+          positionX = spread * -1;
+          positionY = spread * -1;
           angle = 315;
           break;
         case 4:
-          positionX = 30;
-          positionY = -30;
+          positionX = spread;
+          positionY = spread * -1;
           angle = 45;
           break;
         default:
-          positionX = 30;
-          positionY = 30;
+          positionX = spread;
+          positionY = spread;
           angle = 145;
           break;
       }
@@ -209,6 +217,18 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
                 onChange={this.handleOnChange}
                 min="10"
                 max={maxSize}
+                step="1"
+              />
+            </div>
+            <div className="row">
+              <label htmlFor="spread">Spread: </label>
+              <input
+                type="range"
+                name="spread"
+                value={spread}
+                onChange={this.setSpread}
+                min="5"
+                max="50"
                 step="1"
               />
             </div>
