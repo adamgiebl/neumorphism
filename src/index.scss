@@ -52,16 +52,28 @@ body {
 
 .title {
   text-align: center;
-  margin: 20px 0;
+  margin-bottom: 20px;
   z-index: 1;
 
+  @media only screen and (min-width: 1500px) {
+    margin-bottom: 40px;
+    h1 { font-size: 35px; }
+    h2 { font-size: 27px; }
+  }
+
+  @media only screen and (min-width: 1700px) {
+    margin-bottom: 70px;
+    h1 { font-size: 38px; }
+    h2 { font-size: 30px; }
+  }
+
   @media only screen and (max-width: 680px) and (max-height: 740px) {
-    margin: 10px 0;
+    margin-bottom: 10px;
     h1 { font-size: 18px; }
     h2 { font-size: 15px; }
   }
   @media only screen and (max-width: 680px) and (max-height: 590px) {
-    margin: 10px 0;
+    margin-bottom: 10px;
     h1 { display: none; }
     h2 { font-size: 14px; }
   }
@@ -79,7 +91,6 @@ body {
 
 
 .container {
-  max-width: 1000px;
   width: 100%;
   text-align:center;
 
@@ -103,6 +114,11 @@ body {
       width: 500px;
       height: 500px;
       margin-right: 50px;
+
+      @media only screen and (min-width: 1500px) {
+        width: 600px;
+        height: 600px;
+      }
 
       @media only screen and (max-width: 1000px) {
         width: 400px;
@@ -135,6 +151,10 @@ body {
       border-radius: 30px;
       text-align: left;
       position: relative;
+
+      @media only screen and (min-width: 1700px) {
+        font-size: 16px;
+      }
 
       @media only screen and (max-width: 950px) {
         font-size: 12px;
@@ -169,6 +189,14 @@ body {
       .code-block {
         font-size: 10px;
 
+        @media only screen and (min-width: 1500px) {
+          font-size: 12px;
+        }
+
+        @media only screen and (min-width: 1700px) {
+          font-size: 14px;
+        }
+
         @media only screen and (max-width: 950px) {
           font-size: 8px;
         }
@@ -179,6 +207,10 @@ body {
         border-radius: 3px;
         flex-grow: 1;
         font-size: 13px;
+
+        @media only screen and (min-width: 1700px) {
+          font-size: 16px;
+        }
 
         @media only screen and (max-width: 950px) {
           font-size: 10px;
