@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import colorLuminance, { getContrast } from "./lightendarken";
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import css from "react-syntax-highlighter/dist/esm/languages/prism/css";
+import styled from 'styled-components';
 import { solarizedlight as Light, atomDark as Dark } from "react-syntax-highlighter/dist/esm/styles/prism/";
-import * as s from "./App.style";
 
 SyntaxHighlighter.registerLanguage("css", css);
 
@@ -15,7 +15,8 @@ class App extends Component {
     shape: true,
     blur: 60,
     activeLightSource: 0,
-    colorDifference: 0.15
+    colorDifference: 0.15,
+    maxSize: 410
   };
 
   softElement = React.createRef();
@@ -60,10 +61,24 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
   componentDidMount() {
     this.setState({ color: "#aab7ea" });
     this.lightSources = [...document.getElementsByClassName("light-source")];
+    const windowWidth = window.innerWidth;
+    if (windowWidth < 1000) {
+      if (windowWidth < 800) {
+        if (windowWidth < 680) {
+          this.setState({ maxSize: 180, size: 150 });
+        }
+        else {
+          this.setState({ maxSize: 250, size: 200 });
+        }
+      }
+      else {
+        this.setState({ maxSize: 350, size: 250 });
+      }
+    }
   }
 
   render() {
-    const { blur, color, size, radius, shape, activeLightSource, colorDifference } = this.state;
+    const { blur, color, size, radius, shape, activeLightSource, colorDifference, maxSize } = this.state;
     if (this.softElement.current) {
       let angle = 145;
       let positionX = 30;
@@ -125,10 +140,10 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
             ${positionX * -1}px ${positionY * -1}px ${blur}px ${lightColor};`;
     }
     return (
-      <s.Container className="App">
-        <s.Flex>
-          <s.Preview>
-            <s.Sun
+      <div className="container App">
+        <div className="flex">
+          <div className="preview">
+            <Sun
               top="0"
               bottom="unset"
               right="0"
@@ -136,8 +151,8 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
               data-value="2"
               onClick={this.setLightSource}
               className="light-source"
-            ></s.Sun>
-            <s.Sun
+            ></Sun>
+            <Sun
               top="0"
               bottom="unset"
               right="unset"
@@ -145,8 +160,8 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
               data-value="1"
               onClick={this.setLightSource}
               className="light-source active"
-            ></s.Sun>
-            <s.Sun
+            ></Sun>
+            <Sun
               top="unset"
               bottom="0"
               right="0"
@@ -154,8 +169,8 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
               data-value="3"
               onClick={this.setLightSource}
               className="light-source"
-            ></s.Sun>
-            <s.Sun
+            ></Sun>
+            <Sun
               top="unset"
               bottom="0"
               right="unset"
@@ -163,12 +178,12 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
               data-value="4"
               onClick={this.setLightSource}
               className="light-source"
-            ></s.Sun>
+            ></Sun>
             <div ref={this.softElement} className="soft-element soft-shadow"></div>
-          </s.Preview>
-          <s.Configuration className="soft-shadow">
-            <s.Row>
-              <span style={{ paddingRight: "10px" }}>Select color:</span>
+          </div>
+          <div className="configuration soft-shadow">
+            <div className="row">
+              <label htmlFor="color">Select color:</label>  
               <input
                 type="color"
                 name="color"
@@ -184,22 +199,22 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
                 ref={this.colorInput}
                 onChange={this.validateColor}
               />
-            </s.Row>
-            <s.Row>
-              <label htmlFor="size" style={{ paddingRight: "10px" }}>Size: </label>
-              <s.Slider
+            </div>
+            <div className="row">
+              <label htmlFor="size">Size: </label>
+              <input
                 type="range"
                 name="size"
                 value={size}
                 onChange={this.handleOnChange}
                 min="10"
-                max="350"
+                max={maxSize}
                 step="1"
               />
-            </s.Row>
-            <s.Row>
-              <label htmlFor="colorDifference" style={{ paddingRight: "10px" }}>Colors: </label>
-              <s.Slider
+            </div>
+            <div className="row">
+              <label htmlFor="colorDifference">Colors: </label>
+              <input
                 type="range"
                 name="colorDifference"
                 value={colorDifference}
@@ -208,34 +223,34 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
                 max="0.6"
                 step="0.01"
               />
-            </s.Row>
-            <s.Row>
-            <label htmlFor="radius" style={{ paddingRight: "10px" }}>Radius: </label>
-            <s.Slider
-              type="range"
-              name="radius"
-              value={radius}
-              onChange={this.handleOnChange}
-              min="0"
-              max="200"
-              step="1"
-            />
-            </s.Row>
-            <s.Row>
-            <label htmlFor="blur" style={{ paddingRight: "10px" }}>Blur: </label>
-            <s.Slider
-              type="range"
-              name="blur"
-              value={blur}
-              onChange={this.handleOnChange}
-              min="0"
-              max="200"
-              step="1"
-            />
-            </s.Row>
-            <s.Row>
-              <label htmlFor="blur" style={{ paddingRight: "10px" }}>Shape: </label>
-              <s.ShapeSwitch>
+            </div>
+            <div className="row">
+              <label htmlFor="radius">Radius: </label>
+              <input
+                type="range"
+                name="radius"
+                value={radius}
+                onChange={this.handleOnChange}
+                min="0"
+                max="200"
+                step="1"
+              />
+            </div>
+            <div className="row">
+              <label htmlFor="blur">Blur: </label>
+              <input
+                type="range"
+                name="blur"
+                value={blur}
+                onChange={this.handleOnChange}
+                min="0"
+                max="200"
+                step="1"
+              />
+            </div>
+            <div className="row">
+              <label htmlFor="blur">Shape: </label>
+              <div className="shape-switch">
                 <button
                   className={shape ? "active" : ""}
                   onClick={this.setShape}
@@ -250,18 +265,39 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
                 >
                   Convex
                 </button>
-              </s.ShapeSwitch>
-            </s.Row>
-            <s.CodeBlock>
+              </div>
+            </div>
+            <div className="code-block">
               <SyntaxHighlighter language="css" style={this.theme ? Dark : Light}>
                 {this.codeString}
               </SyntaxHighlighter>
-            </s.CodeBlock>
-          </s.Configuration>
-        </s.Flex>
-      </s.Container>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }
+
+export const Sun = styled.div`
+  position: absolute;
+  left: ${props => props.left};
+  top: ${props => props.top};
+  right: ${props => props.right};
+  bottom: ${props => props.bottom};
+  background: transparent;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  border: 2px solid var(--textColor);
+  border-bottom-right-radius: ${props => props.right === "unset" && props.bottom === "unset" ? "30px" : "unset"};
+  border-bottom-left-radius: ${props => props.left === "unset" && props.bottom === "unset" ? "30px" : "unset"};
+  border-top-right-radius: ${props => props.right === "unset" && props.top === "unset" ? "30px" : "unset"};
+  border-top-left-radius: ${props => props.left === "unset" && props.top === "unset" ? "30px" : "unset"};
+
+  &.active {
+    background: #ffff00;
+  }
+`
 
 export default App;

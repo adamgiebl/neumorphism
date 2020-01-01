@@ -1,25 +1,5 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  max-width: 1000px;
-  width: 100%;
-  text-align:center;
-`
-
-export const Flex = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`
-
-export const Preview = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 500px;
-  height: 500px;
-  margin-right: 50px;
-`
 
 export const Sun = styled.div`
   position: absolute;
@@ -42,12 +22,6 @@ export const Sun = styled.div`
   }
 `
 
-export const Slider = styled.input`
-`
-
-export const CodeBlock = styled.div`
-  font-size: 10px;
-`
 
 export const ShapeSwitch = styled.div`
   display: flex;
@@ -75,21 +49,4 @@ export const ShapeSwitch = styled.div`
       opacity: 1
     }
   }
-`
-
-export const Configuration = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 30px;
-  border-radius: 30px;
-  text-align: left;
-`
-
-export const Row = styled.div`
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-  color: var(--textColor);
-  margin-bottom: 15px !Important;
-  margin-top: 0px !Important;
 `
