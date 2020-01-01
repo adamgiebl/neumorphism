@@ -27,6 +27,10 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
+
+  @media only screen and (min-height: 740px) {
+    justify-content: center;
+  }
 }
 .soft-element {
   --size: 300px;
@@ -78,6 +82,10 @@ body {
   max-width: 1000px;
   width: 100%;
   text-align:center;
+
+  @media only screen and (min-height: 740px) {
+    margin-bottom: 70px;
+  }
 
   .flex {
     display: flex;
