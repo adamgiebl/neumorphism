@@ -3,7 +3,7 @@ import colorLuminance, { getContrast } from "./lightendarken";
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import css from "react-syntax-highlighter/dist/esm/languages/prism/css";
 import styled from 'styled-components';
-import { solarizedlight as Light, atomDark as Dark } from "react-syntax-highlighter/dist/esm/styles/prism/";
+import { prism as Light, atomDark as Dark } from "react-syntax-highlighter/dist/esm/styles/prism/";
 
 SyntaxHighlighter.registerLanguage("css", css);
 
@@ -13,7 +13,7 @@ class App extends Component {
     size: 300,
     radius: 80,
     shape: true,
-    spread: 30,
+    distance: 30,
     blur: 60,
     activeLightSource: 0,
     colorDifference: 0.15,
@@ -39,9 +39,9 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
     });
   };
 
-  setSpread = e => {
+  setdistance = e => {
     this.setState({
-      spread: e.target.value,
+      distance: e.target.value,
       blur: e.target.value * 2
     });
   } 
@@ -86,7 +86,7 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
   }
 
   render() {
-    const { blur, color, size, radius, shape, spread, activeLightSource, colorDifference, maxSize } = this.state;
+    const { blur, color, size, radius, shape, distance, activeLightSource, colorDifference, maxSize } = this.state;
     if (this.softElement.current) {
       let angle = 145;
       let positionX = 30;
@@ -97,28 +97,28 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
       const secondGradientColor = colorLuminance(color, shape ? -0.1 : 0.07);
       switch (activeLightSource) {
         case 1:
-          positionX = spread;
-          positionY = spread;
+          positionX = distance;
+          positionY = distance;
           angle = 145;
           break;
         case 2:
-          positionX = spread * -1;
-          positionY = spread;
+          positionX = distance * -1;
+          positionY = distance;
           angle = 225;
           break;
         case 3:
-          positionX = spread * -1;
-          positionY = spread * -1;
+          positionX = distance * -1;
+          positionY = distance * -1;
           angle = 315;
           break;
         case 4:
-          positionX = spread;
-          positionY = spread * -1;
+          positionX = distance;
+          positionY = distance * -1;
           angle = 45;
           break;
         default:
-          positionX = spread;
-          positionY = spread;
+          positionX = distance;
+          positionY = distance;
           angle = 145;
           break;
       }
@@ -233,12 +233,12 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
               />
             </div>
             <div className="row">
-              <label htmlFor="spread">Spread: </label>
+              <label htmlFor="distance">Distance: </label>
               <input
                 type="range"
-                name="spread"
-                value={spread}
-                onChange={this.setSpread}
+                name="distance"
+                value={distance}
+                onChange={this.setdistance}
                 min="5"
                 max="50"
                 step="1"
@@ -287,7 +287,7 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
                 </button>
               </div>
             </div>
-            <div className="code-block">
+            <div className={`code-block ${this.theme ? "" : "small"}`}>
               <SyntaxHighlighter language="css" style={this.theme ? Dark : Light}>
                 {this.codeString}
               </SyntaxHighlighter>

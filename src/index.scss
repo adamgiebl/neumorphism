@@ -53,10 +53,12 @@ body {
 .title {
   text-align: center;
   margin-bottom: 20px;
+  margin-top: 20px;
   z-index: 1;
 
   @media only screen and (min-width: 1500px) {
     margin-bottom: 40px;
+    margin-top: 0;
     h1 { font-size: 35px; }
     h2 { font-size: 27px; }
   }
@@ -69,11 +71,11 @@ body {
 
   @media only screen and (max-width: 680px) and (max-height: 740px) {
     margin-bottom: 10px;
+    margin-top: 0;
     h1 { font-size: 18px; }
     h2 { font-size: 15px; }
   }
   @media only screen and (max-width: 680px) and (max-height: 590px) {
-    margin-bottom: 10px;
     h1 { display: none; }
     h2 { font-size: 14px; }
   }
@@ -120,7 +122,7 @@ body {
         height: 600px;
       }
 
-      @media only screen and (max-width: 1000px) {
+      @media only screen and (max-width: 1000px), only screen and (max-height: 713px) {
         width: 400px;
         height: 400px;
         margin-right: 30px;
@@ -189,6 +191,10 @@ body {
       .code-block {
         font-size: 10px;
 
+        pre {
+          margin-bottom: 0;
+        }
+        
         @media only screen and (min-width: 1500px) {
           font-size: 12px;
         }
@@ -216,6 +222,10 @@ body {
           font-size: 10px;
         }
 
+        @media only screen and (max-width: 700px) {
+          font-size: 8px;
+        }
+
         button {
           flex-grow: 1;
           padding: 10px 15px;
@@ -231,6 +241,48 @@ body {
           }
         }
       }
+    }
+  }
+}
+
+.link {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  padding: 10px 15px;
+  font-size: 15px;
+  font-weight: normal;
+  text-decoration-color: var(--textColorOpposite);
+  color: var(--textColor);  
+  border-radius: 10px;
+
+  @media only screen and (max-width: 680px) {
+    display: none;
+  }
+
+  b {
+    background: var(--textColor);
+    color: var(--textColorOpposite);
+    padding: 2px 5px;
+    border-radius: 4px;
+  }
+}
+.social {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  display: none;
+
+  .instagram {
+    padding: 10px;
+    display: block;
+    border-radius: 10px;
+    background: linear-gradient(var(--angle), var(--firstGradientColor), var(--secondGradientColor));
+    box-shadow: 5px 5px 10px var(--lightColor), 
+            -5px -5px 10px var(--darkColor);
+    svg {
+      display: block;
+      fill: var(--textColor);
     }
   }
 }
