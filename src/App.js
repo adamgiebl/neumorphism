@@ -249,7 +249,7 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
               />
             </div>
             <div className="row">
-              <label htmlFor="colorDifference">Colors: </label>
+              <label htmlFor="colorDifference">Intensity: </label>
               <input
                 type="range"
                 name="colorDifference"
