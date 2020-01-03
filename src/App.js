@@ -67,7 +67,7 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
   };
 
   componentDidMount() {
-    this.setState({ color: "#aab7ea" });
+    this.setState({ color: "#aab7ea", maxSize: 410 });
     this.lightSources = [...document.getElementsByClassName("light-source")];
     const windowWidth = window.innerWidth;
     if (windowWidth < 1000) {
