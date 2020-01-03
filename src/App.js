@@ -198,6 +198,7 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
                 onChange={this.handleOnChange}
                 placeholder="#ffffff"
                 value={color}
+                id="color"
               />
               <span style={{ margin: "0 10px" }}>or</span>
               <input
@@ -218,6 +219,7 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
                 min="10"
                 max={maxSize}
                 step="1"
+                id="size"
               />
             </div>
             <div className="row">
@@ -230,6 +232,7 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
                 min="0"
                 max="200"
                 step="1"
+                id="radius"
               />
             </div>
             <div className="row">
@@ -242,6 +245,7 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
                 min="5"
                 max="50"
                 step="1"
+                id="distance"
               />
             </div>
             <div className="row">
@@ -254,6 +258,7 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
                 min="0.01"
                 max="0.6"
                 step="0.01"
+                id="colorDifference"
               />
             </div>
             <div className="row">
@@ -266,6 +271,7 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
                 min="0"
                 max="200"
                 step="1"
+                id="blur"
               />
             </div>
             <div className="row">
