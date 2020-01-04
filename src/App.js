@@ -22,6 +22,8 @@ class App extends Component {
 
   softElement = React.createRef();
   colorInput = React.createRef();
+  codeContainer = React.createRef();
+  code = React.createRef();
   body = document.getElementsByTagName("body")[0];
   lightSources = [];
 
@@ -64,6 +66,18 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
     });
     e.target.classList.add("active");
     this.setState({ activeLightSource: parseInt(e.target.dataset.value) });
+  };
+
+  copyToClipboard = e => {
+    const el = this.codeContainer.current;
+    el.select();
+    el.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+    this.code.current.classList.add('copied')
+    
+    setTimeout(() => {
+      this.code.current.classList.remove('copied')
+    }, 1000);
   };
 
   componentDidMount() {
@@ -296,10 +310,12 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
                 </button>
               </div>
             </div>
-            <div className={`code-block ${this.theme ? "" : "small"}`}>
+            <div className={`code-block ${this.theme ? "" : "small"}`} ref={this.code}>
+              <button className="copy" onClick={this.copyToClipboard}>Copy</button>
               <SyntaxHighlighter language="css" style={this.theme ? Dark : Light}>
                 {this.codeString}
               </SyntaxHighlighter>
+              <textarea id="code-container" ref={this.codeContainer} value={this.codeString} readOnly></textarea>
             </div>
           </div>
         </div>
