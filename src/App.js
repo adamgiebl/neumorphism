@@ -67,10 +67,10 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
   };
 
   componentDidMount() {
-    this.setState({ color: "#aab7ea", maxSize: 410 });
+    this.setState({ color: "#aab7ea" });
     this.lightSources = [...document.getElementsByClassName("light-source")];
-    const windowWidth = window.innerWidth;
-    if (windowWidth < 1000) {
+    const windowWidth = window.outerWidth;
+    if (windowWidth < 1000 && windowWidth !== 0) {
       if (windowWidth < 800) {
         if (windowWidth < 680) {
           this.setState({ maxSize: 180, size: 150 });
@@ -82,6 +82,9 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
       else {
         this.setState({ maxSize: 350, size: 250 });
       }
+    }
+    else {
+      this.setState({ maxSize: 410, size: 300 });
     }
   }
 
