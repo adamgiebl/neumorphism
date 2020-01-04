@@ -80,8 +80,19 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
     }, 1000);
   };
 
+  setRouteColor = () => {
+    if (window.location.hash != 0) {
+      if (/^#[0-9A-F]{6}$/i.test(window.location.hash)) {
+        this.setState({ color: window.location.hash });
+      }
+    }
+  }
+
   componentDidMount() {
+    window.onpopstate = this.setRouteColor;
     this.setState({ color: "#aab7ea" });
+    this.setRouteColor();
+    window.history.replaceState('homepage', 'Title', '/' + this.state.color);
     this.lightSources = [...document.getElementsByClassName("light-source")];
     const windowWidth = window.outerWidth;
     if (windowWidth < 1000 && windowWidth !== 0) {
@@ -155,7 +166,8 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
         --firstGradientColor: ${firstGradientColor};
         --secondGradientColor: ${secondGradientColor};
       `;
-      this.softElement.current.style.setProperty("--size", size + "px");
+      window.history.replaceState('homepage', 'Title', '/' + this.state.color);
+      this.softElement.current.style.setProperty("--size", size + "px");  
       this.softElement.current.style.setProperty("--radius", radius + "px");
       if (getContrast(color) === '#001f3f') { this.theme = true }
       else { this.theme = false }

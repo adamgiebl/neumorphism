@@ -137,6 +137,7 @@ body {
         height: 200px;
         margin-right: 0px;
         margin-bottom: 30px;
+        z-index: 1;
       }
       @media only screen and (max-height: 715px) {
         margin-bottom: 20px;
@@ -166,6 +167,8 @@ body {
         font-size: 11px;
         padding: 15px;
         border-radius: 15px;
+        box-shadow: none;
+        background: var(--baseColor);
       }
 
       .row {
