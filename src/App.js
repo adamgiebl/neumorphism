@@ -110,7 +110,8 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
     this.setColorFromRoute();
     window.history.replaceState('homepage', 'Title', '/' + this.state.color);
     this.lightSources = [...document.getElementsByClassName("light-source")];
-    const windowWidth = window.outerWidth;
+    const windowWidth = window.innerWidth;
+    console.log(windowWidth);
     if (windowWidth < 1000 && windowWidth !== 0) {
       if (windowWidth < 800) {
         if (windowWidth < 680) {
@@ -314,7 +315,7 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
                 value={blur}
                 onChange={this.handleOnChange}
                 min="0"
-                max="200"
+                max="100"
                 step="1"
                 id="blur"
               />
