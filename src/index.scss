@@ -249,14 +249,14 @@ body {
           top: 4px;
           right: 4px;
           border-radius: 3px;
-          background-color: #47A049;
-          color: #f6f5f7;
+          background-color: #3b843c;
+          color: white;
           border: none;
           cursor: pointer;
           padding: 3px 7px;
         }
 
-        #code-container {
+        #code-container, .hidden {
           position: absolute;
           left: -9999px
         }

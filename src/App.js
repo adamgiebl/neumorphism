@@ -9,7 +9,7 @@ SyntaxHighlighter.registerLanguage("css", css);
 
 class App extends Component {
   state = {
-    color: "#aab7ea",
+    color: "#55b9f3",
     size: 300,
     radius: 80,
     shape: true,
@@ -90,7 +90,7 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
 
   componentDidMount() {
     window.onpopstate = this.setRouteColor;
-    this.setState({ color: "#aab7ea" });
+    this.setState({ color: "#55b9f3" });
     this.setRouteColor();
     window.history.replaceState('homepage', 'Title', '/' + this.state.color);
     this.lightSources = [...document.getElementsByClassName("light-source")];
@@ -229,11 +229,12 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
                 value={color}
                 id="color"
               />
-              <span style={{ margin: "0 10px" }}>or</span>
+              <label htmlFor="colorInput" style={{ margin: "0 10px" }}>or</label>
               <input
                 type="text"
                 placeholder="#ffffff"
                 name="color"
+                id="colorInput"
                 ref={this.colorInput}
                 onChange={this.validateColor}
               />
@@ -327,6 +328,7 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
               <SyntaxHighlighter language="css" style={this.theme ? Dark : Light}>
                 {this.codeString}
               </SyntaxHighlighter>
+              <label htmlFor="code-container" className="hidden">hidden</label>
               <textarea id="code-container" ref={this.codeContainer} value={this.codeString} readOnly></textarea>
             </div>
           </div>
