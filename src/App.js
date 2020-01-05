@@ -41,7 +41,7 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
     });
   };
 
-  setdistance = e => {
+  setDistance = e => {
     this.setState({
       distance: e.target.value,
       blur: e.target.value * 2
@@ -51,7 +51,13 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
   validateColor = e => {
     if (/^#[0-9A-F]{6}$/i.test(e.target.value)) {
       this.handleOnChange(e);
+      window.history.replaceState('homepage', 'Title', '/' + e.target.value);
     }
+  }
+
+  setColor = e => {
+    window.history.replaceState('homepage', 'Title', '/' + e.target.value);
+    this.handleOnChange(e);
   }
 
   setShape = (e) => {
@@ -80,7 +86,7 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
     }, 1000);
   };
 
-  setRouteColor = () => {
+  setColorFromRoute = () => {
     if (window.location.hash != 0) {
       if (/^#[0-9A-F]{6}$/i.test(window.location.hash)) {
         this.setState({ color: window.location.hash });
@@ -89,9 +95,9 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
   }
 
   componentDidMount() {
-    window.onpopstate = this.setRouteColor;
+    window.onpopstate = this.setColorFromRoute;
     this.setState({ color: "#55b9f3" });
-    this.setRouteColor();
+    this.setColorFromRoute();
     window.history.replaceState('homepage', 'Title', '/' + this.state.color);
     this.lightSources = [...document.getElementsByClassName("light-source")];
     const windowWidth = window.outerWidth;
@@ -166,7 +172,6 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
         --firstGradientColor: ${firstGradientColor};
         --secondGradientColor: ${secondGradientColor};
       `;
-      window.history.replaceState('homepage', 'Title', '/' + this.state.color);
       this.softElement.current.style.setProperty("--size", size + "px");  
       this.softElement.current.style.setProperty("--radius", radius + "px");
       if (getContrast(color) === '#001f3f') { this.theme = true }
@@ -220,16 +225,16 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
           </div>
           <div className="configuration soft-shadow">
             <div className="row">
-              <label htmlFor="color">Select color:</label>  
+              <label htmlFor="color">Pick a color:</label>  
               <input
                 type="color"
                 name="color"
-                onChange={this.handleOnChange}
+                onChange={this.setColor}
                 placeholder="#ffffff"
                 value={color}
                 id="color"
               />
-              <label htmlFor="colorInput" style={{ margin: "0 10px" }}>or</label>
+              <label htmlFor="colorInput" style={{ paddingLeft: "10px" }}>or</label>
               <input
                 type="text"
                 placeholder="#ffffff"
@@ -271,7 +276,7 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
                 type="range"
                 name="distance"
                 value={distance}
-                onChange={this.setdistance}
+                onChange={this.setDistance}
                 min="5"
                 max="50"
                 step="1"
