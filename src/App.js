@@ -11,7 +11,7 @@ class App extends Component {
   state = {
     color: "#55b9f3",
     size: 300,
-    radius: 80,
+    radius: 50,
     maxRadius: 150,
     shape: true,
     distance: 30,
