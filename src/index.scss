@@ -323,9 +323,13 @@ body {
 }
 .social {
   position: fixed;
-  right: 25px;
+  left: 25px;
   bottom: 25px;
-  display: none;
+  display: block;
+
+  @media only screen and (max-width: 680px) {
+    display: none;
+  }
 
   .instagram {
     padding: 10px;
