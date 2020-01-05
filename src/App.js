@@ -12,6 +12,7 @@ class App extends Component {
     color: "#55b9f3",
     size: 300,
     radius: 80,
+    maxRadius: 150,
     shape: true,
     distance: 30,
     blur: 60,
@@ -47,6 +48,15 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
       blur: e.target.value * 2
     });
   } 
+
+  setSize = ({ target }) => {
+    this.setState({
+      size: target.value,
+      distance: Math.round(target.value * 0.1),
+      blur: Math.round(target.value * 0.2),
+      maxRadius: Math.round(target.value / 2)
+    });
+  }
 
   validateColor = e => {
     if (/^#[0-9A-F]{6}$/i.test(e.target.value)) {
@@ -120,7 +130,7 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
   }
 
   render() {
-    const { blur, color, size, radius, shape, distance, activeLightSource, colorDifference, maxSize } = this.state;
+    const { blur, color, size, radius, shape, distance, activeLightSource, colorDifference, maxSize, maxRadius } = this.state;
     if (this.softElement.current) {
       let angle = 145;
       let positionX = 30;
@@ -176,7 +186,7 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
       this.softElement.current.style.setProperty("--radius", radius + "px");
       if (getContrast(color) === '#001f3f') { this.theme = true }
       else { this.theme = false }
-      this.codeString = `border-radius: ${radius === "200" ? '50%' : radius + 'px'};
+      this.codeString = `border-radius: ${parseInt(radius) === maxRadius ? '50%' : radius + 'px'};
 background: linear-gradient(${angle}deg, ${firstGradientColor}, ${secondGradientColor});
 box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor}, 
             ${positionX * -1}px ${positionY * -1}px ${blur}px ${lightColor};`;
@@ -250,7 +260,7 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
                 type="range"
                 name="size"
                 value={size}
-                onChange={this.handleOnChange}
+                onChange={this.setSize}
                 min="10"
                 max={maxSize}
                 step="1"
@@ -265,7 +275,7 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
                 value={radius}
                 onChange={this.handleOnChange}
                 min="0"
-                max="200"
+                max={maxRadius}
                 step="1"
                 id="radius"
               />
