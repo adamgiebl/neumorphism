@@ -336,8 +336,8 @@ body {
     display: block;
     border-radius: 10px;
     background: linear-gradient(var(--angle), var(--firstGradientColor), var(--secondGradientColor));
-    box-shadow: 5px 5px 10px var(--lightColor), 
-            -5px -5px 10px var(--darkColor);
+    box-shadow: 5px 5px 10px var(--darkColor), 
+            -5px -5px 10px var(--lightColor);
     svg {
       display: block;
       fill: var(--textColor);

@@ -111,8 +111,7 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
     window.history.replaceState('homepage', 'Title', '/' + this.state.color);
     this.lightSources = [...document.getElementsByClassName("light-source")];
     const windowWidth = window.innerWidth;
-    console.log(windowWidth);
-    if (windowWidth < 1000 && windowWidth !== 0) {
+    if (windowWidth < 1000 && window.navigator.userAgent !== "ReactSnap") {
       if (windowWidth < 800) {
         if (windowWidth < 680) {
           this.setState({ maxSize: 180, size: 150 });
