@@ -13,6 +13,7 @@ class App extends Component {
     size: 300,
     radius: 50,
     maxRadius: 150,
+    gradient: true,
     shape: true,
     distance: 30,
     blur: 60,
@@ -41,6 +42,13 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
       [e.target.name]: e.target.value
     });
   };
+
+  handleCheckbox = e => {
+    console.log(e.target.name, e.target.checked);
+    this.setState({
+      [e.target.name]: e.target.checked
+    });
+  }
 
   setDistance = e => {
     this.setState({
@@ -130,15 +138,15 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
   }
 
   render() {
-    const { blur, color, size, radius, shape, distance, activeLightSource, colorDifference, maxSize, maxRadius } = this.state;
+    const { blur, color, size, radius, shape, distance, activeLightSource, colorDifference, maxSize, maxRadius, gradient } = this.state;
     if (this.softElement.current) {
       let angle = 145;
       let positionX = 30;
       let positionY = 30;
       const darkColor = colorLuminance(color, colorDifference * -1);
       const lightColor = colorLuminance(color, colorDifference);
-      const firstGradientColor = colorLuminance(color, shape ? 0.07 : -0.1);
-      const secondGradientColor = colorLuminance(color, shape ? -0.1 : 0.07);
+      const firstGradientColor = gradient ? colorLuminance(color, shape ? 0.07 : -0.1) : color;
+      const secondGradientColor = gradient ? colorLuminance(color, shape ? -0.1 : 0.07) : color;
       switch (activeLightSource) {
         case 1:
           positionX = distance;
@@ -187,7 +195,7 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
       if (getContrast(color) === '#001f3f') { this.theme = true }
       else { this.theme = false }
       this.codeString = `border-radius: ${parseInt(radius) === maxRadius ? '50%' : radius + 'px'};
-background: linear-gradient(${angle}deg, ${firstGradientColor}, ${secondGradientColor});
+background: ${gradient ? `linear-gradient(${angle}deg, ${firstGradientColor}, ${secondGradientColor})` : `${color}`};
 box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor}, 
             ${positionX * -1}px ${positionY * -1}px ${blur}px ${lightColor};`;
     }
@@ -318,6 +326,19 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
                 step="1"
                 id="blur"
               />
+            </div>
+            <div className="row">
+              <label htmlFor="gradient">Gradient background: </label>
+              <label className="checkbox">
+                <input
+                  type="checkbox"
+                  name="gradient"
+                  checked={gradient}
+                  onChange={this.handleCheckbox}
+                  id="gradient"
+                />
+                <span></span>
+              </label>
             </div>
             <div className="row">
               <label htmlFor="shape">Shape: </label>

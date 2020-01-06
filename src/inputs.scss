@@ -190,3 +190,32 @@ input[type="color"] {
   visibility: visible;
   opacity: 1;
 }
+
+.checkbox input {
+  position: absolute;
+  left: -9999px;
+  z-index: -9999;
+}
+
+.checkbox span {
+  width: 20px;
+  height: 20px;
+  display: block;
+  background: var(--textColorOpposite);
+  padding: 2px;
+  border-radius: 3px;
+  border: 3px solid var(--textColor);
+  position: relative;
+}
+
+.checkbox input:checked + span:before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  height: 10px;
+  border-radius: 1px;
+  width: 10px;
+  background: var(--textColor);
+}
