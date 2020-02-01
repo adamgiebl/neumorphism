@@ -28,7 +28,7 @@ body {
   padding: 0;
   overflow: hidden;
 
-  @media only screen and (min-height: 740px) {
+  @media only screen and (min-height: 760px) {
     justify-content: center;
   }
 }
@@ -122,7 +122,7 @@ body {
         height: 600px;
       }
 
-      @media only screen and (max-width: 1000px), only screen and (max-height: 733px) {
+      @media only screen and (max-width: 1000px), only screen and (max-height: 713px) {
         width: 400px;
         height: 400px;
         margin-right: 30px;
@@ -179,9 +179,13 @@ body {
         margin-bottom: 15px;
         margin-top: 0px;
 
-        @media only screen and (max-width: 680px) and (max-height: 710px) {
+        @media only screen and (max-width: 680px) and (max-height: 715px) {
           margin-bottom: 5px;
-        }
+
+          &.row--checkbox {
+            margin-bottom: 7px;
+          }
+        } 
 
         label {
           padding-right: 10px;

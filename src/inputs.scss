@@ -191,6 +191,10 @@ input[type="color"] {
   opacity: 1;
 }
 
+.checkbox {
+  cursor: pointer;
+}
+
 .checkbox input {
   position: absolute;
   left: -9999px;

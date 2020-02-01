@@ -327,7 +327,7 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
                 id="blur"
               />
             </div>
-            <div className="row">
+            <div className="row row--checkbox">
               <label htmlFor="gradient">Gradient background: </label>
               <label className="checkbox">
                 <input

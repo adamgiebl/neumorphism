@@ -2,6 +2,23 @@
   "short_name": "Neumorphism",
   "name": "Neumorphism CSS code generator",
   "start_url": ".",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "android-chrome-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "android-chrome-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
   "display": "standalone",
   "theme_color": "#001f3f",
   "background_color": "#F6F5F7"
