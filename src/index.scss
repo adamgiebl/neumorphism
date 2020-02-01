@@ -185,6 +185,10 @@ body {
         margin-bottom: 15px;
         margin-top: 0px;
 
+        &--label {
+          margin-bottom: 10px;
+        }
+
         @media only screen and (max-width: 680px) and (max-height: 715px) {
           margin-bottom: 5px;
 
