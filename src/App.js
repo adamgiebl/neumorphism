@@ -363,6 +363,8 @@ box-shadow: ${shape === 1 ? 'inset' : ''} ${positionX}px ${positionY}px ${blur}p
                 <button
                   className={shape === 2 ? "active" : ""}
                   onClick={this.setShape}
+                  name="concave"
+                  title="concave"
                   data-shape="2"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="145" height="24" viewBox="0 0 145 24" fill="none" stroke="white">
@@ -372,6 +374,8 @@ box-shadow: ${shape === 1 ? 'inset' : ''} ${positionX}px ${positionY}px ${blur}p
                 <button
                   className={shape === 3 ? "active" : ""}
                   onClick={this.setShape}
+                  name="convex"
+                  title="convex"
                   data-shape="3"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="145" height="33" viewBox="0 0 145 33" fill="none" stroke="white">
@@ -381,6 +385,8 @@ box-shadow: ${shape === 1 ? 'inset' : ''} ${positionX}px ${positionY}px ${blur}p
                 <button
                   className={shape === 1 ? "active" : ""}
                   onClick={this.setShape}
+                  name="pressed"
+                  title="pressed"
                   data-shape="1"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="145" height="24" viewBox="0 0 145 24" fill="none" stroke="white">
