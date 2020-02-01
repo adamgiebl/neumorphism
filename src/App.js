@@ -13,8 +13,9 @@ class App extends Component {
     size: 300,
     radius: 50,
     maxRadius: 150,
+    inset: false,
     gradient: true,
-    shape: true,
+    shape: 3,
     distance: 30,
     blur: 60,
     activeLightSource: 0,
@@ -44,7 +45,6 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
   };
 
   handleCheckbox = e => {
-    console.log(e.target.name, e.target.checked);
     this.setState({
       [e.target.name]: e.target.checked
     });
@@ -79,9 +79,18 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
   }
 
   setShape = (e) => {
-    this.setState({
-      shape: e.target.dataset.value
-    });
+    if (parseInt(e.target.dataset.shape) === 2 || parseInt(e.target.dataset.shape) === 3) {
+      this.setState({
+        shape: parseInt(e.target.dataset.shape),
+        gradient: true
+      });
+    }
+    else {
+      this.setState({
+        shape: parseInt(e.target.dataset.shape),
+        gradient: false
+      });
+    }
   };
 
   setLightSource = e => {
@@ -105,6 +114,7 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
   };
 
   setColorFromRoute = () => {
+    // eslint-disable-next-line eqeqeq
     if (window.location.hash != 0) {
       if (/^#[0-9A-F]{6}$/i.test(window.location.hash)) {
         this.setState({ color: window.location.hash });
@@ -145,8 +155,8 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
       let positionY = 30;
       const darkColor = colorLuminance(color, colorDifference * -1);
       const lightColor = colorLuminance(color, colorDifference);
-      const firstGradientColor = gradient ? colorLuminance(color, shape ? 0.07 : -0.1) : color;
-      const secondGradientColor = gradient ? colorLuminance(color, shape ? -0.1 : 0.07) : color;
+      const firstGradientColor = gradient && shape !== 1 ? colorLuminance(color, shape === 2 ? 0.07 : -0.1) : color;
+      const secondGradientColor = gradient && shape !== 1 ? colorLuminance(color, shape === 3 ? 0.07 : -0.1) : color;
       switch (activeLightSource) {
         case 1:
           positionX = distance;
@@ -190,14 +200,21 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
         --firstGradientColor: ${firstGradientColor};
         --secondGradientColor: ${secondGradientColor};
       `;
+      if (shape === 1) {
+        this.softElement.current.classList.add('pressed'); 
+      }
+      else {
+        this.softElement.current.classList.remove('pressed'); 
+      }
+      
       this.softElement.current.style.setProperty("--size", size + "px");  
       this.softElement.current.style.setProperty("--radius", radius + "px");
       if (getContrast(color) === '#001f3f') { this.theme = true }
       else { this.theme = false }
       this.codeString = `border-radius: ${parseInt(radius) === maxRadius ? '50%' : radius + 'px'};
-background: ${gradient ? `linear-gradient(${angle}deg, ${firstGradientColor}, ${secondGradientColor})` : `${color}`};
-box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor}, 
-            ${positionX * -1}px ${positionY * -1}px ${blur}px ${lightColor};`;
+background: ${gradient && shape !== 1 ? `linear-gradient(${angle}deg, ${firstGradientColor}, ${secondGradientColor})` : `${color}`};
+box-shadow: ${shape === 1 ? 'inset' : ''} ${positionX}px ${positionY}px ${blur}px ${darkColor}, 
+            ${shape === 1 ? 'inset' : ''} ${positionX * -1}px ${positionY * -1}px ${blur}px ${lightColor};`;
     }
     return (
       <div className="container App">
@@ -341,21 +358,34 @@ box-shadow: ${positionX}px ${positionY}px ${blur}px ${darkColor},
               </label>
             </div>
             <div className="row">
-              <label htmlFor="shape">Shape: </label>
+              <label>Shape: </label>
               <div className="shape-switch">
                 <button
-                  className={shape ? "active" : ""}
+                  className={shape === 2 ? "active" : ""}
                   onClick={this.setShape}
-                  data-value=" "
+                  data-shape="2"
                 >
-                  Concave
+                  <svg xmlns="http://www.w3.org/2000/svg" width="145" height="24" viewBox="0 0 145 24" fill="none" stroke="white">
+                    <path d="M0 22H7C15.2843 22 22 15.2843 22 7.00001V3.39336C22 2.7091 22.6808 2.2299 23.3304 2.44485C59.2066 14.3156 85.7767 12.9047 120.7 2.39438C121.343 2.20072 122 2.67921 122 3.3512V7.00001C122 15.2843 128.716 22 137 22H145" stroke="inherit" strokeWidth="6"/>
+                  </svg>
                 </button>
                 <button
-                  className={!shape ? "active" : ""}
+                  className={shape === 3 ? "active" : ""}
                   onClick={this.setShape}
-                  data-value=""
+                  data-shape="3"
                 >
-                  Convex
+                  <svg xmlns="http://www.w3.org/2000/svg" width="145" height="33" viewBox="0 0 145 33" fill="none" stroke="white">
+                    <path d="M0 31H7C15.2843 31 22 24.2843 22 16V11.7329C22 11.2966 22.2898 10.9083 22.7061 10.7779C60.0722 -0.924818 84.913 -0.925978 121.302 10.7745C121.714 10.9071 122 11.2935 122 11.727V16C122 24.2843 128.716 31 137 31H145" stroke="inherit" strokeWidth="6"/>
+                  </svg>
+                </button>
+                <button
+                  className={shape === 1 ? "active" : ""}
+                  onClick={this.setShape}
+                  data-shape="1"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="145" height="24" viewBox="0 0 145 24" fill="none" stroke="white">
+                    <path d="M0 2H22V21C22 21.5523 22.4477 22 23 22H121C121.552 22 122 21.5523 122 21V2H145" stroke="inherit" strokeWidth="6"/>
+                  </svg>
                 </button>
               </div>
             </div>

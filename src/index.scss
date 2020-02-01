@@ -45,9 +45,14 @@ body {
 }
 
 .soft-shadow {
-  background: linear-gradient(var(--angle), var(--firstGradientColor), var(--secondGradientColor));
+  background: linear-gradient(var(--angle), var(--secondGradientColor) ,var(--firstGradientColor));
   box-shadow: var(--positionX) var(--positionY) var(--blur) var(--darkColor),
     var(--positionXOpposite) var(--positionYOpposite) var(--blur) var(--lightColor);
+
+  &.pressed {
+    box-shadow: inset var(--positionX) var(--positionY) var(--blur) var(--darkColor),
+    inset var(--positionXOpposite) var(--positionYOpposite) var(--blur) var(--lightColor);
+  }
 }
 
 .title {
@@ -284,29 +289,25 @@ body {
         overflow: hidden;
         border-radius: 3px;
         flex-grow: 1;
-        font-size: 13px;
-
-        @media only screen and (min-width: 1700px) {
-          font-size: 16px;
-        }
-
-        @media only screen and (max-width: 950px) {
-          font-size: 10px;
-        }
-
-        @media only screen and (max-width: 700px) {
-          font-size: 8px;
-        }
 
         button {
           flex-grow: 1;
-          padding: 10px 15px;
+          padding: 0px 10px;
           background: var(--textColor);
           color: var(--textColorOpposite);
           cursor: pointer;
           outline: 0;
           border: none;
           opacity: 0.8;
+
+          svg {
+            stroke: var(--textColorOpposite);
+            width: 45px;
+          }
+
+          * {
+            pointer-events: none;
+          }
 
           &.active {
             opacity: 1
