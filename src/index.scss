@@ -65,13 +65,13 @@ body {
     margin-bottom: 40px;
     margin-top: 0;
     h1 { font-size: 35px; }
-    h2 { font-size: 27px; }
+    h2 { font-size: 25px; }
   }
 
   @media only screen and (min-width: 1700px) {
     margin-bottom: 70px;
     h1 { font-size: 38px; }
-    h2 { font-size: 30px; }
+    h2 { font-size: 28px; }
   }
 
   @media only screen and (max-width: 680px) and (max-height: 760px) {
@@ -93,6 +93,7 @@ body {
     font-weight: normal;
     margin: 0;
     margin-top: 5px;
+    font-size: 21px;
   }
 }
 
