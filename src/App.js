@@ -357,7 +357,7 @@ box-shadow: ${shape === 1 ? 'inset' : ''} ${positionX}px ${positionY}px ${blur}p
                     data-shape="0"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" width="145" height="24" viewBox="0 0 145 24" fill="none" stroke="white">
-                      <path d="M0 22H7C15.2843 22 22 15.2843 22 7.00001V3C22 2.44772 22.4477 2 23 2H121C121.552 2 122 2.44772 122 3V7.00001C122 15.2843 128.716 22 137 22H145" stroke="inherit" stroke-width="6"/>
+                      <path d="M0 22H7C15.2843 22 22 15.2843 22 7.00001V3C22 2.44772 22.4477 2 23 2H121C121.552 2 122 2.44772 122 3V7.00001C122 15.2843 128.716 22 137 22H145" stroke="inherit" strokeWidth="6"/>
                     </svg>
                 </button>
                 <button
