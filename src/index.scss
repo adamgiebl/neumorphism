@@ -16,6 +16,7 @@
 * {
   box-sizing: border-box;
 }
+
 body {
   background: var(--baseColor);
   color: var(--textColor);
@@ -156,7 +157,7 @@ body {
     .configuration {
       display: flex;
       flex-direction: column;
-      padding: 30px;
+      padding: 20px 30px;
       border-radius: 30px;
       text-align: left;
       position: relative;
@@ -323,16 +324,25 @@ body {
   }
 }
 
-.link {
+.links {
   position: fixed;
   right: 20px;
   bottom: 20px;
-  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  @media only screen and (max-width: 680px) {
+    display: none;
+  }
+}
+.link {
   font-size: 15px;
   font-weight: normal;
+  display: block;
   text-decoration-color: var(--textColorOpposite);
   color: var(--textColor);  
   border-radius: 10px;
+  padding-top: 15px;
+  text-align: right;
 
   @media only screen and (max-width: 680px) {
     display: none;
@@ -359,7 +369,7 @@ body {
     padding: 10px;
     display: block;
     border-radius: 10px;
-    background: linear-gradient(var(--angle), var(--firstGradientColor), var(--secondGradientColor));
+    background: linear-gradient(var(--angle), var(--secondGradientColor), var(--firstGradientColor));
     box-shadow: 5px 5px 10px var(--darkColor), 
             -5px -5px 10px var(--lightColor);
     svg {
@@ -367,4 +377,9 @@ body {
       fill: var(--textColor);
     }
   }
+}
+.bmc-button.bmcButton {
+  border-radius: 10px !important;
+  color: var(--textColorOpposite) !important;
+  background-color: var(--textColor) !important;
 }

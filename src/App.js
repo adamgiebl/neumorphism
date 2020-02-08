@@ -15,8 +15,8 @@ class App extends Component {
     maxRadius: 150,
     inset: false,
     gradient: true,
-    shape: 3,
-    distance: 30,
+    shape: 0,
+    distance: 20,
     blur: 60,
     activeLightSource: 0,
     colorDifference: 0.15,
@@ -124,7 +124,7 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
 
   componentDidMount() {
     window.onpopstate = this.setColorFromRoute;
-    this.setState({ color: "#55b9f3" });
+    this.setState({ color: "#55b9f3", gradient: false });
     this.setColorFromRoute();
     window.history.replaceState('homepage', 'Title', '/' + this.state.color);
     this.lightSources = [...document.getElementsByClassName("light-source")];
@@ -155,6 +155,10 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
       let positionY = 30;
       const darkColor = colorLuminance(color, colorDifference * -1);
       const lightColor = colorLuminance(color, colorDifference);
+      
+      //const darkColor = `rgba(0,0,0, ${colorDifference})`;
+      //const lightColor = `rgba(255,255,255, ${colorDifference})`;
+      
       const firstGradientColor = gradient && shape !== 1 ? colorLuminance(color, shape === 2 ? 0.07 : -0.1) : color;
       const secondGradientColor = gradient && shape !== 1 ? colorLuminance(color, shape === 3 ? 0.07 : -0.1) : color;
       switch (activeLightSource) {
@@ -403,6 +407,9 @@ box-shadow: ${shape === 1 ? 'inset' : ''} ${positionX}px ${positionY}px ${blur}p
               <label htmlFor="code-container" className="hidden">hidden</label>
               <textarea id="code-container" ref={this.codeContainer} value={this.codeString} readOnly></textarea>
             </div>
+            <a href="https://uxdesign.cc/neumorphism-in-user-interfaces-b47cef3bf3a6" className="link" target="_blank" rel="noopener" onclick="getOutboundLink('https://uxdesign.cc/neumorphism-in-user-interfaces-b47cef3bf3a6'); return true;">
+              Read more about <b>Neumorphism</b>
+            </a>
           </div>
         </div>
       </div>
