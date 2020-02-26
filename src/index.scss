@@ -29,8 +29,11 @@ body {
   padding: 0;
   overflow: hidden;
 
-  @media only screen and (min-height: 760px) {
+  @media only screen and (min-height: 800px) {
     justify-content: center;
+  }
+  @media only screen and (max-height: 600px) {
+    padding-top: 10px;
   }
 }
 .soft-element {
@@ -75,15 +78,20 @@ body {
     h2 { font-size: 28px; }
   }
 
-  @media only screen and (max-width: 680px) and (max-height: 760px) {
+  @media only screen and (max-width: 680px) and (max-height: 800px) {
     margin-bottom: 10px;
     margin-top: 10px;
     h1 { font-size: 18px; }
     h2 { font-size: 15px; }
   }
-  @media only screen and (max-width: 680px) and (max-height: 610px) {
+  @media only screen and (max-width: 680px) and (max-height: 620px) {
     h1 { display: none; }
     h2 { font-size: 14px; }
+  }
+
+  @media only screen and (max-height: 600px) {
+    display: none;
+    h2 { display: none }
   }
 
   h1 {
@@ -150,7 +158,7 @@ body {
         margin-bottom: 20px;
       }
       @media only screen and (max-height: 720px) {
-        margin-bottom: 10px;
+        margin-bottom: 0px;
       }
     }
 
