@@ -49,7 +49,7 @@ body {
 }
 
 .soft-shadow {
-  background: linear-gradient(var(--angle), var(--secondGradientColor) ,var(--firstGradientColor));
+  background: linear-gradient(var(--angle), var(--firstGradientColor) ,var(--secondGradientColor));
   box-shadow: var(--positionX) var(--positionY) var(--blur) var(--darkColor),
     var(--positionXOpposite) var(--positionYOpposite) var(--blur) var(--lightColor);
 

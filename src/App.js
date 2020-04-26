@@ -170,11 +170,11 @@ box-shadow: 30px 30px var(--blur) var(--lightColor),
 
       const firstGradientColor =
         gradient && shape !== 1
-          ? colorLuminance(color, shape === 2 ? 0.07 : -0.1)
+          ? colorLuminance(color, shape === 3 ? 0.07 : -0.1)
           : color;
       const secondGradientColor =
         gradient && shape !== 1
-          ? colorLuminance(color, shape === 3 ? 0.07 : -0.1)
+          ? colorLuminance(color, shape === 2 ? 0.07 : -0.1)
           : color;
 
       switch (activeLightSource) {
