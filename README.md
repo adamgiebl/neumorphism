@@ -1,3 +1,5 @@
+<img src="./public/android-chrome-512x512.png" width="200">
+
 # Neumorphism.io
 ## Available Scripts
 
