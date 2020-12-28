@@ -1,4 +1,4 @@
-<img src="./public/android-chrome-512x512.png" align="middle" width="200">
+<p align="center"><img src="./public/android-chrome-512x512.png" width="200"></p>
 
 # Neumorphism.io
 
