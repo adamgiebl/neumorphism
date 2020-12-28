@@ -27,9 +27,9 @@ const Configuration = ({ previewBox, activeLightSource = 1 }) => {
   const colorInput = useRef()
   const theme = useRef(false)
 
-  const colorOnChange = e => {
-    if (isValidColor(e)) {
-      setColor(e)
+  const colorOnChange = ({ target: { value } }) => {
+    if (isValidColor(value)) {
+      setColor(value)
     }
   }
   const handleColor = e => {
@@ -80,6 +80,9 @@ const Configuration = ({ previewBox, activeLightSource = 1 }) => {
     setSize(size)
   }, [])
   useEffect(() => {
+    if (!isValidColor(color)) {
+      return
+    }
     let angle, positionX, positionY
     const darkColor = colorLuminance(color, colorDifference * -1)
     const lightColor = colorLuminance(color, colorDifference)
@@ -134,6 +137,8 @@ const Configuration = ({ previewBox, activeLightSource = 1 }) => {
       --lightColor: ${lightColor};
       --firstGradientColor: ${firstGradientColor};
       --secondGradientColor: ${secondGradientColor};
+      --size: ${size}px;
+      --radius: ${radius}px;
     `
     if (shape === 1) {
       previewBox.current.classList.add('pressed')
@@ -141,13 +146,12 @@ const Configuration = ({ previewBox, activeLightSource = 1 }) => {
       previewBox.current.classList.remove('pressed')
     }
 
-    previewBox.current.style.setProperty('--size', size + 'px')
-    previewBox.current.style.setProperty('--radius', radius + 'px')
-
-    if (getContrast(color) === '#001f3f') {
-      theme.current = true
-    } else {
-      theme.current = false
+    if (isValidColor(color)) {
+      if (getContrast(color) === '#001f3f') {
+        theme.current = true
+      } else {
+        theme.current = false
+      }
     }
 
     const borderRadius = parseInt(radius) === maxRadius ? '50%' : radius + 'px'

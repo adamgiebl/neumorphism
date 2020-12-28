@@ -27,7 +27,7 @@ export function getContrast(hex) {
   return yiq >= 128 ? '#001f3f' : '#F6F5F7'
 }
 
-export const isValidColor = e => /^#[0-9A-F]{6}$/i.test(e.target.value)
+export const isValidColor = hex => /^#[0-9A-F]{6}$/i.test(hex)
 
 export const getColorFromRoute = () => {
   if (window.location.hash) {

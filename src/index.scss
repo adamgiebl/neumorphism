@@ -12,6 +12,8 @@
   --positionY: 30px;
   --positionYOpposite: -30px;
   --angle: 145deg;
+  --size: 150px;
+  --radius: 30px;
 }
 * {
   box-sizing: border-box;
@@ -39,8 +41,6 @@ body {
   }
 }
 .soft-element {
-  --size: 150px;
-  --radius: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
