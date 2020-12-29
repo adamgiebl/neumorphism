@@ -19,9 +19,7 @@ const Configuration = ({ previewBox, activeLightSource = 1 }) => {
   const [maxSize, setMaxSize] = useState(410)
   const [maxRadius, setMaxRadius] = useState(150)
   const [gradient, setGradient] = useState(false)
-  const [codeString, setCodeString] = useState(`background: linear-gradient(145deg);
-  box-shadow: 30px 30px var(--blur) var(--lightColor), 
-              -30px -30px var(--blur) var(--darkColor);`)
+  const [codeString, setCodeString] = useState('')
   const codeContainer = useRef()
   const code = useRef()
   const colorInput = useRef()
@@ -32,10 +30,12 @@ const Configuration = ({ previewBox, activeLightSource = 1 }) => {
       setColor(value)
     }
   }
+
   const handleColor = e => {
     window.history.replaceState('homepage', 'Title', '/' + e.target.value)
     setColor(e.target.value)
   }
+
   const copyToClipboard = e => {
     const el = codeContainer.current
     el.select()
@@ -73,12 +73,14 @@ const Configuration = ({ previewBox, activeLightSource = 1 }) => {
       setGradient(false)
     }
   }
+
   useEffect(() => {
     window.history.replaceState('homepage', 'Title', '/' + color)
     const { maxSize, size } = getSizes()
     setMaxSize(maxSize)
     setSize(size)
   }, [])
+
   useEffect(() => {
     if (!isValidColor(color)) {
       return

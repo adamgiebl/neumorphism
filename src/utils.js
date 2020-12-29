@@ -39,7 +39,8 @@ export const getColorFromRoute = () => {
 
 export const getSizes = () => {
   const windowWidth = window.innerWidth
-  if (windowWidth < 1000 && window.navigator.userAgent !== 'ReactSnap') {
+  const windowHeight = window.innerHeight
+  if ((windowWidth < 1000 || windowHeight < 860) && window.navigator.userAgent !== 'ReactSnap') {
     if (windowWidth < 800) {
       if (windowWidth < 680) {
         return { maxSize: 180, size: 150 }
