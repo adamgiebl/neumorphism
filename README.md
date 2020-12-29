@@ -4,6 +4,8 @@
 
 CSS code generator for a new popular design trend called Neumorphism/Soft UI. I hope this will help designers and developers experiment with it and possibly adapt it. Built with React.js
 
+Contributions are welcome.
+
 ## Available Scripts
 
 In the project directory, you can run:
