@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { LightSource } from './App.style'
+import { LightSource } from '../App.style'
 
 const Preview = ({ previewBox, setActiveLightSource }) => {
   const lightSources = useRef([])

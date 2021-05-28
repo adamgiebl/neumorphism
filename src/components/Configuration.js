@@ -2,7 +2,13 @@ import React, { useEffect, useState, useRef } from 'react'
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
 import css from 'react-syntax-highlighter/dist/esm/languages/prism/css'
 import ShapeSwitcher from './ShapeSwitcher'
-import { isValidColor, colorLuminance, getContrast, getColorFromRoute, getSizes } from './utils'
+import {
+  isValidColor,
+  colorLuminance,
+  getContrast,
+  getColorFromRoute,
+  getSizes
+} from '../libs/useUtils'
 import { prism as Light, atomDark as Dark } from 'react-syntax-highlighter/dist/esm/styles/prism/'
 import ConfigurationRow from './ConfigurationRow'
 
@@ -79,7 +85,7 @@ const Configuration = ({ previewBox, activeLightSource = 1 }) => {
     const { maxSize, size } = getSizes()
     setMaxSize(maxSize)
     setSize(size)
-  }, [])
+  }, [color])
 
   useEffect(() => {
     if (!isValidColor(color)) {
@@ -174,6 +180,7 @@ box-shadow: ${firstBoxShadow},
             ${secondBoxShadow}`
     )
   })
+
   return (
     <div className="configuration soft-shadow">
       <div className="row">
@@ -239,6 +246,14 @@ box-shadow: ${firstBoxShadow},
         min={'0'}
         max={'100'}
       />
+      <ConfigurationRow
+        label={'IE Support'}
+        type={'checkbox'}
+        // value={blur}
+        // onChange={e => setBlur(e.target.value)}
+        // min={'0'}
+        // max={'100'}
+      />
       <ShapeSwitcher shape={shape} setShape={handleShape} />
       <div className={`code-block ${theme.current ? '' : 'small'}`} ref={code}>
         <button className="copy" onClick={copyToClipboard}>
@@ -256,7 +271,7 @@ box-shadow: ${firstBoxShadow},
         href="https://uxdesign.cc/neumorphism-in-user-interfaces-b47cef3bf3a6"
         className="link"
         target="_blank"
-        rel="noopener"
+        rel="noopener noreferrer"
         onclick="getOutboundLink('https://uxdesign.cc/neumorphism-in-user-interfaces-b47cef3bf3a6'); return true;"
       >
         Read more about <b>Neumorphism</b>

@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 
-import Preview from './Preview'
-import Configuration from './Configuration'
+import Preview from './components/Preview'
+import Configuration from './components/Configuration'
 
 const App = () => {
   const [activeLightSource, setActiveLightSource] = useState(1)
