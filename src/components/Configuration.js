@@ -26,6 +26,7 @@ const Configuration = ({ previewBox, activeLightSource = 1 }) => {
   const [maxRadius, setMaxRadius] = useState(150)
   const [gradient, setGradient] = useState(false)
   const [codeString, setCodeString] = useState('')
+  const [checkSupport, setCheckSupport] = useState(false)
   const codeContainer = useRef()
   const code = useRef()
   const colorInput = useRef()
@@ -165,7 +166,9 @@ const Configuration = ({ previewBox, activeLightSource = 1 }) => {
     const borderRadius = parseInt(radius) === maxRadius ? '50%' : radius + 'px'
     const background =
       gradient && shape !== 1
-        ? `linear-gradient(${angle}deg, ${firstGradientColor}, ${secondGradientColor})`
+        ? `${
+            checkSupport ? '-webkit-' : ''
+          }linear-gradient(${angle}deg, ${firstGradientColor}, ${secondGradientColor})`
         : `${color}`
     const boxShadowPosition = shape === 1 ? 'inset' : ''
     const firstBoxShadow = `${boxShadowPosition} ${positionX}px ${positionY}px ${blur}px ${darkColor}`
@@ -173,12 +176,12 @@ const Configuration = ({ previewBox, activeLightSource = 1 }) => {
       positionY * -1
     }px ${blur}px ${lightColor};`
 
-    setCodeString(
-      `border-radius: ${borderRadius};
-background: ${background};
-box-shadow: ${firstBoxShadow},
-            ${secondBoxShadow}`
-    )
+    setCodeString(`
+    ${checkSupport ? '-webkit-' : ''}border-radius: ${borderRadius};
+    background: ${background};
+    ${checkSupport ? '-webkit-' : ''}box-shadow: ${firstBoxShadow},
+              ${secondBoxShadow}
+      `)
   })
 
   return (
@@ -247,12 +250,10 @@ box-shadow: ${firstBoxShadow},
         max={'100'}
       />
       <ConfigurationRow
-        label={'IE Support'}
+        label={'Old Browser Support'}
         type={'checkbox'}
-        // value={blur}
-        // onChange={e => setBlur(e.target.value)}
-        // min={'0'}
-        // max={'100'}
+        onChange={e => setCheckSupport(e.target.checked)}
+        value={checkSupport}
       />
       <ShapeSwitcher shape={shape} setShape={handleShape} />
       <div className={`code-block ${theme.current ? '' : 'small'}`} ref={code}>
