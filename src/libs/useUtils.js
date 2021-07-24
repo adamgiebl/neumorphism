@@ -7,9 +7,9 @@ export function colorLuminance(hex, lum) {
   lum = lum || 0
 
   // convert to decimal and change luminosity
-  let rgb = '#',
-    c,
-    i
+  let rgb = '#'
+  let c
+  let i
   for (i = 0; i < 3; i++) {
     c = parseInt(hex.substr(i * 2, 2), 16)
     c = Math.round(Math.min(Math.max(0, c + c * lum), 255)).toString(16)
@@ -20,10 +20,10 @@ export function colorLuminance(hex, lum) {
 }
 
 export function getContrast(hex) {
-  const r = parseInt(hex.substr(1, 2), 16),
-    g = parseInt(hex.substr(3, 2), 16),
-    b = parseInt(hex.substr(5, 2), 16),
-    yiq = (r * 299 + g * 587 + b * 114) / 1000
+  const r = parseInt(hex.substr(1, 2), 16)
+  const g = parseInt(hex.substr(3, 2), 16)
+  const b = parseInt(hex.substr(5, 2), 16)
+  const yiq = (r * 299 + g * 587 + b * 114) / 1000
   return yiq >= 128 ? '#001f3f' : '#F6F5F7'
 }
 
@@ -57,7 +57,7 @@ export const getSizes = () => {
 
 export const camelize = str => {
   return str
-    .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+    .replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => {
       return index === 0 ? word.toLowerCase() : word.toUpperCase()
     })
     .replace(/\s+/g, '')

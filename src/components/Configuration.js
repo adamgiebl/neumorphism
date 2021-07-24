@@ -167,7 +167,7 @@ const Configuration = ({ previewBox, activeLightSource = 1 }) => {
     const background =
       gradient && shape !== 1
         ? `${
-            checkSupport ? '-webkit-' : ''
+            checkSupport && '-webkit-'
           }linear-gradient(${angle}deg, ${firstGradientColor}, ${secondGradientColor})`
         : `${color}`
     const boxShadowPosition = shape === 1 ? 'inset' : ''
@@ -177,12 +177,25 @@ const Configuration = ({ previewBox, activeLightSource = 1 }) => {
     }px ${blur}px ${lightColor};`
 
     setCodeString(`
-    ${checkSupport ? '-webkit-' : ''}border-radius: ${borderRadius};
+    ${checkSupport && '-webkit-'}border-radius: ${borderRadius};
     background: ${background};
-    ${checkSupport ? '-webkit-' : ''}box-shadow: ${firstBoxShadow},
+    ${checkSupport && '-webkit-'}box-shadow: ${firstBoxShadow},
               ${secondBoxShadow}
       `)
-  })
+  }, [
+    color,
+    colorDifference,
+    gradient,
+    shape,
+    activeLightSource,
+    blur,
+    size,
+    radius,
+    maxRadius,
+    checkSupport,
+    distance,
+    previewBox
+  ])
 
   return (
     <div className="configuration soft-shadow">
@@ -273,7 +286,9 @@ const Configuration = ({ previewBox, activeLightSource = 1 }) => {
         className="link"
         target="_blank"
         rel="noopener noreferrer"
-        onclick="getOutboundLink('https://uxdesign.cc/neumorphism-in-user-interfaces-b47cef3bf3a6'); return true;"
+        onClick={() =>
+          "getOutboundLink('https://uxdesign.cc/neumorphism-in-user-interfaces-b47cef3bf3a6'); return true;"
+        }
       >
         Read more about <b>Neumorphism</b>
       </a>
