@@ -1,7 +1,10 @@
 footer {
-  padding: 0 60px;
+  padding: 0 30px;
+  position: fixed;
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
+  bottom: 20px;
   width: 100%;
 
   @media only screen and (max-width: 918px) {
@@ -11,6 +14,18 @@ footer {
 .links {
   display: flex;
   align-items: center;
+  position: fixed;
+  top: 30px;
+  right: 30px;
+
+  @media only screen and (max-width: 800px) {
+    top: 10px;
+    right: 10px;
+  }
+
+  @media only screen and (max-width: 574px) {
+    display: none;
+  }
 }
 .link {
   font-size: 15px;
@@ -57,7 +72,6 @@ footer {
     font-size: 18px;
     text-align: left;
     padding-top: 0;
-    padding-right: 20px;
   }
 
   .bmc-button img {
@@ -104,14 +118,6 @@ footer {
 
   @media only screen and (max-width: 800px) {
     display: none;
-  }
-}
-.github-star {
-  @media only screen and (max-width: 680px) {
-    position: absolute;
-    right: 15px;
-    bottom: 5px;
-    z-index: 1;
   }
 }
 
