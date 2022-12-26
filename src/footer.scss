@@ -2,13 +2,31 @@ footer {
   padding: 0 30px;
   position: fixed;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-end;
   bottom: 20px;
   width: 100%;
 
   @media only screen and (max-width: 918px) {
     padding: 0 20px;
+  }
+}
+
+.tags {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  @media only screen and (max-width: 918px) {
+    display: none;
+  }
+  a {
+    padding: 0.7em 1.2em;
+    border: 2px solid var(--textColor);
+    border-radius: 7px;
+    background: none;
+    text-decoration: none;
+    color: var(--textColor);
   }
 }
 .links {
