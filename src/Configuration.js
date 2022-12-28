@@ -79,7 +79,7 @@ const Configuration = ({ previewBox, activeLightSource = 1 }) => {
     const { maxSize, size } = getSizes()
     setMaxSize(maxSize)
     setSize(size)
-  }, [])
+  }, [color])
 
   useEffect(() => {
     if (!isValidColor(color)) {
@@ -173,7 +173,19 @@ background: ${background};
 box-shadow: ${firstBoxShadow},
             ${secondBoxShadow}`
     )
-  })
+  }, [
+    color,
+    colorDifference,
+    gradient,
+    shape,
+    activeLightSource,
+    blur,
+    size,
+    radius,
+    maxRadius,
+    distance,
+    previewBox
+  ])
   return (
     <div className="configuration soft-shadow">
       <div className="row">
@@ -256,7 +268,7 @@ box-shadow: ${firstBoxShadow},
         href="https://uxdesign.cc/neumorphism-in-user-interfaces-b47cef3bf3a6"
         className="link"
         target="_blank"
-        rel="noopener"
+        rel="noopener noreferrer"
         onclick="getOutboundLink('https://uxdesign.cc/neumorphism-in-user-interfaces-b47cef3bf3a6'); return true;"
       >
         Read more about <b>Neumorphism</b>
