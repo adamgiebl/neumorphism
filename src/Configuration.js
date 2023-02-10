@@ -74,6 +74,35 @@ const Configuration = ({ previewBox, activeLightSource = 1 }) => {
     }
   }
 
+  const handleLightSource = (activeLightSource, distance) => {
+    const activeLightSources = {
+      1: {
+        positionX: distance,
+        positionY: distance,
+        angle: 145
+      },
+      2: {
+        positionX: distance * -1,
+        positionY: distance,
+        angle: 225
+      },
+
+      3: {
+        positionX: distance * -1,
+        positionY: distance * -1,
+        angle: 315
+      },
+
+      4: {
+        positionX: distance,
+        positionY: distance * -1,
+        angle: 45
+      }
+    }
+
+    return activeLightSources[activeLightSource] || activeLightSources[1]
+  }
+
   useEffect(() => {
     window.history.replaceState('homepage', 'Title', '/' + color)
     const { maxSize, size } = getSizes()
@@ -85,7 +114,8 @@ const Configuration = ({ previewBox, activeLightSource = 1 }) => {
     if (!isValidColor(color)) {
       return
     }
-    let angle, positionX, positionY
+    // let angle, positionX, positionY
+    let { positionX, positionY, angle } = handleLightSource(activeLightSource, distance)
     const darkColor = colorLuminance(color, colorDifference * -1)
     const lightColor = colorLuminance(color, colorDifference)
 
@@ -95,33 +125,6 @@ const Configuration = ({ previewBox, activeLightSource = 1 }) => {
       gradient && shape !== 1 ? colorLuminance(color, shape === 2 ? 0.07 : -0.1) : color
 
     // TODO: replace with a map
-    switch (activeLightSource) {
-      case 1:
-        positionX = distance
-        positionY = distance
-        angle = 145
-        break
-      case 2:
-        positionX = distance * -1
-        positionY = distance
-        angle = 225
-        break
-      case 3:
-        positionX = distance * -1
-        positionY = distance * -1
-        angle = 315
-        break
-      case 4:
-        positionX = distance
-        positionY = distance * -1
-        angle = 45
-        break
-      default:
-        positionX = distance
-        positionY = distance
-        angle = 145
-        break
-    }
 
     colorInput.current.value = color
 
