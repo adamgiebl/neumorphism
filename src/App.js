@@ -15,13 +15,7 @@ const App = () => {
         <Configuration previewBox={previewBox} activeLightSource={activeLightSource} />
       </div>
       <div className="mt-24">
-        <div className="text-start space-y-1">
-          <h3 className="text-primary text-3xl font-black">Examples</h3>
-          <p className="text-primary text-base">Examples of Neumorphism elements</p>
-        </div>
-        <div className="mt-6">
-          <UiverseElements />
-        </div>
+        <UiverseElements />
       </div>
     </div>
   )
