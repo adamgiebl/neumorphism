@@ -10,7 +10,7 @@ const UiverseElements = () => {
     try {
       setIsLoading(true)
       setError(null)
-      const response = await fetch('http://localhost:3000/resource/neumorphism-elements')
+      const response = await fetch('https://uiverse.io/resource/neumorphism-elements')
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
