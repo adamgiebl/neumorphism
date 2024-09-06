@@ -1,7 +1,17 @@
 import { useEffect, useRef } from 'react'
-import { globalReset, tailwindBaseCss } from '~/utils/constants'
 
-export const ShadowDOMContent = ({ css, html, backgroundColor }) => {
+export const globalReset = `* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+button {
+  font-family: inherit;
+}
+
+`
+
+export const ShadowDOMContent = ({ css, html, backgroundColor, onClickShadow }) => {
   const previewRef = useRef(null)
   const styleObj = backgroundColor ? { backgroundColor: backgroundColor } : {}
 
@@ -25,7 +35,6 @@ export const ShadowDOMContent = ({ css, html, backgroundColor }) => {
     return () => {
       if (previewRef.current && document) {
         const shadowRoot = previewRef.current?.shadowRoot
-        shadowRoot?.removeEventListener('click', onClickShadow)
         shadowRoot.innerHTML = ''
       }
     }
@@ -35,7 +44,7 @@ export const ShadowDOMContent = ({ css, html, backgroundColor }) => {
     <div
       id="container"
       ref={previewRef}
-      className={`card__button-container relative z-[1]`}
+      className={`card__button-container w-full relative z-[1]`}
       style={styleObj}
       suppressHydrationWarning
     ></div>

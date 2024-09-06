@@ -1,0 +1,125 @@
+// Variables
+$maindark: var(--maindark);
+$grey: var(--grey);
+$lightgray: var(--lightgray);
+$offwhite: var(--offwhite);
+$dark: var(--dark);
+$green: var(--green);
+$red: var(--red);
+$blue: var(--blue);
+$border-radius: var(--border-radius);
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin absolute-position($top: auto, $right: auto, $bottom: auto, $left: auto) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+
+.card {
+  transition: opacity 0.3s;
+  position: relative;
+  overflow: hidden;
+  color: $maindark;
+  border-radius: 8px;
+
+  &--in-progress {
+    opacity: 0.4;
+
+    .card-content {
+      @include flex-center;
+      color: $grey;
+      font-size: 18px;
+    }
+  }
+
+  .get-code svg {
+    height: 22px;
+    width: 22px;
+  }
+
+  .get-code {
+    cursor: pointer;
+    position: absolute;
+    z-index: 10;
+    bottom: 40px;
+    right: 12px;
+    font-size: 15px;
+    opacity: 0;
+    z-index: 5;
+    transition: opacity 0.3s;
+    font-weight: var(--semibold);
+    display: flex;
+    align-items: center;
+    color: var(--offwhite);
+    padding: 4px 8px;
+    border-radius: var(--border-radius);
+    gap: 5px;
+  }
+
+  &:hover {
+    .get-code {
+      opacity: 1;
+    }
+  }
+
+ 
+  .clickable-wrapper {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  > .card-content {
+    position: relative;
+    overflow: hidden;
+    min-height: 250px;
+    max-height: 520px;
+    background: $lightgray;
+    border-radius: 8px;
+
+   
+    @media only screen and (max-width: 500px) {
+      min-height: 220px;
+    }
+  }
+
+  &--card > .card-content {
+    min-height: 420px;
+  }
+
+  &.dark-background {
+    color: $dark;
+
+    .card-content,
+    .card__button-container {
+      background: $dark;
+    }
+  }
+
+  &__button-container {
+    width: 100%;
+    height: 100%;
+    background: $lightgray;
+    position: relative;
+    @include flex-center;
+    cursor: pointer;
+    z-index: 1;
+
+    button {
+      cursor: pointer;
+      user-select: none;
+    }
+  }
+}
+
+
+

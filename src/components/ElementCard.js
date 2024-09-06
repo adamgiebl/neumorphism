@@ -1,17 +1,24 @@
-import { Link, useNavigate } from '@remix-run/react'
-import { arrowDiagonalRightUp, code as codeIcon, fork, globe, squares, warning } from '~/icons'
-import { post_type } from '@prisma/client'
-import MakeRecommended from '../forms/MakeRecommended'
-import { ShadowDOMContent } from '../ShadowDOMContent'
-import CardDropdown from '../dropdowns/DropdownCard'
-import { CardIconBar } from './CardIconBar'
-import SourceTooltip from '../Tooltips/SourceTooltip'
+import { ShadowDOMContent } from './ShadowDOMContent'
 
 const formatter = Intl.NumberFormat('en', { notation: 'compact' })
 
-export const Card = props => {
+export const code = className => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    className={className}
+    stroke="currentColor"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    strokeWidth="2"
+  >
+    <path d="M17 18a28.201 28.201 0 0 0 4.848-5.49.93.93 0 0 0 0-1.02A28.201 28.201 0 0 0 17 6M7.004 18a28.2 28.2 0 0 1-4.848-5.49.93.93 0 0 1 0-1.02A28.2 28.2 0 0 1 7.004 6m7-1.999-4 16" />
+  </svg>
+)
+
+export const ElementCard = props => {
   const {
-    id,
     html,
     css,
     viewCount,
@@ -20,80 +27,54 @@ export const Card = props => {
     type,
     backgroundColor,
     user,
-    className = '',
-    _count
+    className = ''
   } = props
 
-  const navigate = useNavigate()
+  const link = `https://uiverse.io/${user.username}/${friendlyId}`
+
+  const handleShadowClick = e => {
+    e.stopImmediatePropagation()
+  }
+
+  const handleClick = () => {
+    window.open(link, { target: '_blank' })
+  }
 
   return (
-    <article
-      className={`card flex flex-col text-black h-full card--${type} group ${
+    <div
+      onClick={handleClick}
+      className={`card flex flex-col text-black w-full h-full card--${type} group ${
         theme === 'dark' && 'dark-background'
-      } ${isFavorite && 'favorite'}`}
-      onClick={onClick}
+      }`}
     >
-      <div className={`card-content grow ${isCompact ? 'compact' : ''} ${className}`}>
-        <Link to={link} className="font-sans font-semibold get-code bg-dark-400">
-          {codeIcon('w-[20px] h-[20px]')} Get code
-        </Link>
-        {post_source && (
-          <>
-            <Link
-              className="left-[12px] bottom-[12px] z-10 opacity-0 group-hover:opacity-100 transition-opacity absolute px-[8px] py-[4px] rounded-md bg-blue-700 hover:bg-blue-800 text-white"
-              to={post_source.website}
-              id={id + '-source'}
-            >
-              {arrowDiagonalRightUp('w-[20px] h-[20px] text-white')}
-            </Link>
-            <SourceTooltip id={id + '-source'} website={post_source.website} />
-          </>
-        )}
-        {isAdmin && !review && isSignedIn && (
-          <div className="absolute z-50 left-1.5 bottom-1.5 flex items-center gap-1">
-            {socialMediaShare?.length > 0 && globe('w-5 h-5 text-purple-500')}
-            <MakeRecommended isRecommended={isRecommended} postId={id} />
-          </div>
-        )}
-        {isOwner && comment && review && (
-          <div className="absolute m-[20px] w-[calc(100%_-_40px)] rounded-lg bottom-0 z-[2] shadow-xl bg-red-50 text-red-400 px-6 py-4">
-            <div className="mb-1 text-sm text-dark-700">Feedback:</div>
-            <span className="font-semibold">"{comment}"</span>
-          </div>
-        )}
-        <CardDropdown
-          {...props}
-          username={user?.username}
-          className={'top-1 right-1 absolute z-50 hidden group-hover:block'}
-        />
-        <CardIconBar
-          originalPostId={originalPostId}
-          _count={_count}
-          backgroundColor={backgroundColor}
-          theme={theme}
-          post_ai_variation_query={post_ai_variation_query}
-          isNotPublic={isNotPublic}
-          isTailwind={isTailwind}
-          postId={id}
-        />
-        {/*Checkbox cannot be checked inside of a real link*/}
-        <div className="clickable-wrapper" onClick={() => navigate(link)}>
+      <div className={`card-content grow w-full ${className}`}>
+        <div className="clickable-wrapper w-full">
           <ShadowDOMContent
             css={css}
             html={html}
             backgroundColor={backgroundColor}
-            isTailwind={isTailwind}
-            onClickShadow={onClickShadow}
+            onClickShadow={handleShadowClick}
           />
-          <Link to={link} className="fake-link">
-            Link to post
-          </Link>
         </div>
       </div>
 
-      <div className="flex items-center gap-1 card__views">
-        {viewCount > 0 && <span>{formatter.format(viewCount)} views</span>}
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-bold get-code bg-dark-400"
+      >
+        {code('w-[20px] h-[20px]')} Get code
+      </a>
+
+      <div className="flex items-center justify-between gap-1 mt-1 card__views">
+        <p className="text-primary text-base font-semibold">{user?.username}</p>
+        {viewCount > 0 && (
+          <span className="text-sm text-gray-600 font-medium">
+            {formatter.format(viewCount)} views
+          </span>
+        )}
       </div>
-    </article>
+    </div>
   )
 }

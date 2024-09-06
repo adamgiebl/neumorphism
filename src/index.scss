@@ -19,6 +19,17 @@
   --angle: 145deg;
   --size: 150px;
   --radius: 30px;
+  --lightgray: #e8e8e8;
+  --border-radius: 10px;
+  --semibold: 600;
+  --offwhite: #f2f2f2;
+  --grey: #9c9c9c;
+  --blue-grey-1: #9fa3af;
+  --blue-grey-2: #bbbec9be;
+  --secondary-grey-light: #dcdcdc;
+  --maindark: #171717;
+  --dark: #212121;
+  --darker: #111111;
 }
 * {
   box-sizing: border-box;
@@ -30,13 +41,11 @@ body {
   background: var(--baseColor);
   color: var(--textColor);
   font-family: 'Muli', sans-serif;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0;
-  padding: 0;
-  overflow: hidden;
+  padding-top: 40px;
 
   @media only screen and (min-height: 800px) {
     justify-content: center;
@@ -140,7 +149,7 @@ body {
     margin-bottom: 70px;
   }
 
-  .flex {
+  .flex-custom {
     display: flex;
     align-items: flex-start;
 
@@ -433,5 +442,6 @@ body {
   right: 0;
 }
 
-@import './inputs.scss';
-@import './footer.scss';
+@import './styles/inputs.scss';
+@import './styles/footer.scss';
+@import './styles/Card.scss'
