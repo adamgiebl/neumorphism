@@ -15,7 +15,6 @@ const UiverseElements = () => {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
       const data = await response.json()
-      console.log(data)
 
       setElements(data.posts)
     } catch (e) {
@@ -31,8 +30,6 @@ const UiverseElements = () => {
   }, [fetchUiverseElements])
 
   const renderElements = () => {
-    console.log(elements)
-
     if (!elements) return <p>No data available.</p>
 
     if (Array.isArray(elements)) {
