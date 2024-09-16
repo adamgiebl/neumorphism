@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react'
 
 const ShapeSwitcher = ({ shape, setShape }) => {
   return (
     <>
       <div className="row row--label">
-        <label>Shape: </label>
+        <label className="opacity-60">Shape </label>
       </div>
       <div className="row">
         <div className="shape-switch">
           <button
-            className={shape === 0 ? "active" : ""}
+            className={(shape === 0 ? 'active ' : '') + 'flex justify-center items-center'}
             onClick={setShape}
             name="flat"
             title="Flat"
@@ -31,7 +31,7 @@ const ShapeSwitcher = ({ shape, setShape }) => {
             </svg>
           </button>
           <button
-            className={shape === 2 ? "active" : ""}
+            className={(shape === 2 ? 'active ' : '') + 'flex justify-center items-center'}
             onClick={setShape}
             name="concave"
             title="Concave"
@@ -53,7 +53,7 @@ const ShapeSwitcher = ({ shape, setShape }) => {
             </svg>
           </button>
           <button
-            className={shape === 3 ? "active" : ""}
+            className={(shape === 3 ? 'active ' : '') + 'flex justify-center items-center'}
             onClick={setShape}
             name="convex"
             title="Convex"
@@ -75,7 +75,7 @@ const ShapeSwitcher = ({ shape, setShape }) => {
             </svg>
           </button>
           <button
-            className={shape === 1 ? "active" : ""}
+            className={(shape === 1 ? 'active ' : '') + 'flex justify-center items-center'}
             onClick={setShape}
             name="pressed"
             title="Pressed"
@@ -99,7 +99,7 @@ const ShapeSwitcher = ({ shape, setShape }) => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default ShapeSwitcher;
+export default ShapeSwitcher

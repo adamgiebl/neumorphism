@@ -24,12 +24,10 @@ $border-radius: var(--border-radius);
   left: $left;
 }
 
-
 .card {
   transition: opacity 0.3s;
   position: relative;
   overflow: hidden;
-  color: $maindark;
   border-radius: 8px;
 
   &--in-progress {
@@ -72,7 +70,6 @@ $border-radius: var(--border-radius);
     }
   }
 
- 
   .clickable-wrapper {
     height: 100%;
     overflow: hidden;
@@ -86,7 +83,6 @@ $border-radius: var(--border-radius);
     background: $lightgray;
     border-radius: 8px;
 
-   
     @media only screen and (max-width: 500px) {
       min-height: 220px;
     }
@@ -97,8 +93,6 @@ $border-radius: var(--border-radius);
   }
 
   &.dark-background {
-    color: $dark;
-
     .card-content,
     .card__button-container {
       background: $dark;
@@ -120,6 +114,3 @@ $border-radius: var(--border-radius);
     }
   }
 }
-
-
-

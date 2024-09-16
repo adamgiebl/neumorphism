@@ -43,12 +43,12 @@ export const ElementCard = props => {
   return (
     <div
       onClick={handleClick}
-      className={`card flex flex-col text-black w-full h-full card--${type} group ${
+      className={`card flex flex-col w-full h-full card--${type} group ${
         theme === 'dark' && 'dark-background'
       }`}
     >
       <div className={`card-content grow w-full ${className}`}>
-        <div className="clickable-wrapper w-full">
+        <div className="w-full text-black clickable-wrapper">
           <ShadowDOMContent
             css={css}
             html={html}
@@ -68,9 +68,9 @@ export const ElementCard = props => {
       </a>
 
       <div className="flex items-center justify-between gap-1 mt-1 card__views">
-        <p className="text-primary text-base font-semibold">{user?.username}</p>
+        <p className="text-base font-semibold">{user?.username}</p>
         {viewCount > 0 && (
-          <span className="text-sm text-gray-600 font-medium">
+          <span className="text-sm font-normal opacity-60">
             {formatter.format(viewCount)} views
           </span>
         )}
