@@ -23,7 +23,7 @@ const UiverseElements = () => {
     fetchUiverseElements()
   }, [fetchUiverseElements])
 
-  // if (elements.length === 0) return null
+  if (elements.length === 0) return null
 
   return (
     <>
