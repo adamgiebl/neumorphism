@@ -6,7 +6,7 @@ const UiverseElements = () => {
 
   const fetchUiverseElements = useCallback(async () => {
     try {
-      const response = await fetch('https://uiverse.io/resource/neumorphism-elements')
+      const response = await fetch('http://localhost:3000/resource/neumorphism-elements')
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
@@ -27,9 +27,9 @@ const UiverseElements = () => {
 
   return (
     <>
-      <div className="text-start space-y-1">
-        <h3 className="text-primary text-3xl font-black">Examples</h3>
-        <p className="text-primary text-base">Examples of Neumorphism elements</p>
+      <div className="space-y-1 text-start">
+        <h3 className="text-3xl font-black text-primary">Examples</h3>
+        <p className="text-base text-primary">Examples of Neumorphism elements</p>
       </div>
       <div className="grid grid-cols-card mt-6 gap-y-5 gap-x-3.5 w-full mb-24 max-xs:grid-cols-1 max-xs:gap-2.5">
         {elements.map(element => (
@@ -41,7 +41,7 @@ const UiverseElements = () => {
           href="https://uiverse.io/elements?tags=neumorphism"
           target="_blank"
           rel="noopener noreferrer"
-          className="px-4 py-2 border-primary border rounded-md text-primary hover:bg-primary hover:text-white"
+          className="px-4 py-2 border rounded-md border-primary text-primary hover:bg-primary hover:text-white"
         >
           Browse more
         </a>
