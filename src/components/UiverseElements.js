@@ -28,15 +28,15 @@ const UiverseElements = () => {
   return (
     <>
       <div className="space-y-1 text-start">
-        <h3 className="text-3xl font-black text-primary">Examples</h3>
-        <p className="text-base text-primary">Examples of Neumorphism elements</p>
+        <h2 className="text-3xl font-black">Examples</h2>
+        <p className="text-base">Examples of Neumorphism elements</p>
       </div>
       <div className="grid grid-cols-card mt-6 gap-y-5 gap-x-3.5 w-full mb-24 max-xs:grid-cols-1 max-xs:gap-2.5">
         {elements.map(element => (
           <ElementCard key={element.id} {...element} />
         ))}
       </div>
-      <div className="flex items-center justify-center w-full">
+      <div className="flex items-center justify-center w-full browse-more">
         <a
           href="https://uiverse.io/elements?tags=neumorphism"
           target="_blank"
