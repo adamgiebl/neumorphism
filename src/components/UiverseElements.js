@@ -23,25 +23,25 @@ const UiverseElements = () => {
     fetchUiverseElements()
   }, [fetchUiverseElements])
 
-  if (elements.length === 0) return null
+  // if (elements.length === 0) return null
 
   return (
     <>
       <div className="text-start space-y-1">
-        <h3 className="text-primary text-3xl font-black">Examples</h3>
-        <p className="text-primary text-base">Examples of Neumorphism elements</p>
+        <h2 className="text-3xl font-black">Examples</h2>
+        <p className="text-base">Examples of Neumorphism elements</p>
       </div>
       <div className="grid grid-cols-card mt-6 gap-y-5 gap-x-3.5 w-full mb-24 max-xs:grid-cols-1 max-xs:gap-2.5">
         {elements.map(element => (
           <ElementCard key={element.id} {...element} />
         ))}
       </div>
-      <div className="flex items-center justify-center w-full">
+      <div className="flex items-center justify-center w-full browse-more">
         <a
           href="https://uiverse.io/elements?tags=neumorphism"
           target="_blank"
           rel="noopener noreferrer"
-          className="px-4 py-2 border-primary border rounded-md text-primary hover:bg-primary hover:text-white"
+          className="px-4 py-2 rounded-md"
         >
           Browse more
         </a>

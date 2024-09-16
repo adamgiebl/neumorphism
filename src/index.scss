@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root {
   --blur: 60px;
   --textColor: #001f3f;
@@ -144,6 +143,12 @@ body {
   width: 100%;
   text-align: center;
   margin-bottom: 20px;
+
+  .browse-more {
+    a {
+      border: 1px solid var(--textColor);
+    }
+  }
 
   @media only screen and (min-height: 800px) {
     margin-bottom: 70px;
@@ -444,4 +449,4 @@ body {
 
 @import './styles/inputs.scss';
 @import './styles/footer.scss';
-@import './styles/Card.scss'
+@import './styles/Card.scss';
