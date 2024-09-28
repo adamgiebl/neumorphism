@@ -53,7 +53,7 @@ const navigation = {
 
 export default function Footer() {
   return (
-    <footer aria-labelledby="footer-heading" className="bg-[#e0e0e0]">
+    <footer aria-labelledby="footer-heading" className="text-[var(--textColor)]">
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
@@ -61,7 +61,7 @@ export default function Footer() {
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-8">
             <img src="/apple-touch-icon.png" alt="icon" className="w-10 h-10" />
-            <p className="text-sm leading-6 text-gray-500">
+            <p className="text-sm leading-6 opacity-70">
               Neumorphism.io - Generate neumorphic designs
             </p>
             <div className="flex space-x-6">
@@ -70,7 +70,7 @@ export default function Footer() {
                   key={item.name}
                   href={item.href}
                   target="_blank"
-                  className="text-gray-400 hover:text-gray-500"
+                  className="opacity-60 hover:opacity-70"
                   rel="noreferrer"
                 >
                   <span className="sr-only">{item.name}</span>
@@ -85,14 +85,14 @@ export default function Footer() {
             </div>
             <div className="grid grid-cols-2 gap-8">
               <div>
-                <h3 className="text-sm font-semibold leading-6 text-slate-950">Resources</h3>
+                <h3 className="text-sm font-semibold leading-6 opacity-90">Resources</h3>
                 <ul className="mt-6 space-y-4">
                   {navigation.resources.map(item => (
                     <li key={item.name}>
                       <a
                         href={item.href}
                         target="_blank"
-                        className="text-sm leading-6 text-gray-500 hover:text-slate-950"
+                        className="text-sm leading-6 opacity-70 hover:opacity-80"
                         rel="noreferrer"
                       >
                         {item.name}
@@ -102,14 +102,14 @@ export default function Footer() {
                 </ul>
               </div>
               <div className="md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-slate-950">Other Elements</h3>
+                <h3 className="text-sm font-semibold leading-6 opacity-90">Other Elements</h3>
                 <ul className="mt-6 space-y-4">
                   {navigation.elements.map(item => (
                     <li key={item.name}>
                       <a
                         href={item.href}
                         target="_blank"
-                        className="text-sm leading-6 text-gray-500 hover:text-slate-950"
+                        className="text-sm leading-6 opacity-70 hover:opacity-80"
                         rel="noreferrer"
                       >
                         {item.name}
@@ -122,7 +122,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="pt-8 mt-16 border-t border-gray-900/10 sm:mt-20 lg:mt-24">
-          <p className="text-xs leading-5 text-gray-500">
+          <p className="text-xs leading-5 opacity-70">
             &copy; {new Date().getFullYear()} Adam Giebl, All rights reserved.
           </p>
         </div>
