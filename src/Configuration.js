@@ -21,6 +21,7 @@ const Configuration = ({ previewBox, activeLightSource = 1 }) => {
   const [maxRadius, setMaxRadius] = useState(150)
   const [gradient, setGradient] = useState(false)
   const [codeString, setCodeString] = useState('')
+  const [isCopied, setIsCopied] = useState(false)
   const codeContainer = useRef()
   const code = useRef()
   const colorInput = useRef()
@@ -38,6 +39,7 @@ const Configuration = ({ previewBox, activeLightSource = 1 }) => {
   }
 
   const copyToClipboard = e => {
+    setIsCopied(true)
     const el = codeContainer.current
     el.select()
     el.setSelectionRange(0, 99999)
@@ -46,6 +48,7 @@ const Configuration = ({ previewBox, activeLightSource = 1 }) => {
 
     setTimeout(() => {
       code.current.classList.remove('copied')
+      setIsCopied(false)
     }, 1000)
   }
 
@@ -264,17 +267,33 @@ box-shadow: ${firstBoxShadow},
           className="flex items-center gap-1.5 text-white copy text-xs"
           onClick={copyToClipboard}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"
-            className="w-3 h-3 text-white"
-          >
-            <path
-              fill="currentColor"
-              d="M384 336l-192 0c-8.8 0-16-7.2-16-16l0-256c0-8.8 7.2-16 16-16l140.1 0L400 115.9 400 320c0 8.8-7.2 16-16 16zM192 384l192 0c35.3 0 64-28.7 64-64l0-204.1c0-12.7-5.1-24.9-14.1-33.9L366.1 14.1c-9-9-21.2-14.1-33.9-14.1L192 0c-35.3 0-64 28.7-64 64l0 256c0 35.3 28.7 64 64 64zM64 128c-35.3 0-64 28.7-64 64L0 448c0 35.3 28.7 64 64 64l192 0c35.3 0 64-28.7 64-64l0-32-48 0 0 32c0 8.8-7.2 16-16 16L64 464c-8.8 0-16-7.2-16-16l0-256c0-8.8 7.2-16 16-16l32 0 0-48-32 0z"
-            />
-          </svg>
-          Copy
+          {isCopied ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              style={{ width: '0.75rem', height: '0.75rem', color: 'var(--textColor)' }}
+            >
+              <path
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M2 7l4 4 8-8"
+              />
+            </svg>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+              style={{ width: '0.75rem', height: '0.75rem', color: 'var(--textColor)' }}
+            >
+              <path
+                fill="currentColor"
+                d="M384 336l-192 0c-8.8 0-16-7.2-16-16l0-256c0-8.8 7.2-16 16-16l140.1 0L400 115.9 400 320c0 8.8-7.2 16-16 16zM192 384l192 0c35.3 0 64-28.7 64-64l0-204.1c0-12.7-5.1-24.9-14.1-33.9L366.1 14.1c-9-9-21.2-14.1-33.9-14.1L192 0c-35.3 0-64 28.7-64 64l0 256c0 35.3 28.7 64 64 64zM64 128c-35.3 0-64 28.7-64 64L0 448c0 35.3 28.7 64 64 64l192 0c35.3 0 64-28.7 64-64l0-32-48 0 0 32c0 8.8-7.2 16-16 16L64 464c-8.8 0-16-7.2-16-16l0-256c0-8.8 7.2-16 16-16l32 0 0-48-32 0z"
+              />
+            </svg>
+          )}
         </button>
         <SyntaxHighlighter language="css" style={theme.current ? Dark : Light}>
           {codeString}
