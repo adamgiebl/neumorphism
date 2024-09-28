@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
 import css from 'react-syntax-highlighter/dist/esm/languages/prism/css'
 import ShapeSwitcher from './ShapeSwitcher'
-import { isValidColor, colorLuminance, getContrast, getColorFromRoute, getSizes } from './utils'
+import { isValidColor, colorLuminance, getContrast, getColorFromRoute, getSizes } from '../utils'
 import { prism as Light, atomDark as Dark } from 'react-syntax-highlighter/dist/esm/styles/prism/'
 import ConfigurationRow from './ConfigurationRow'
 
@@ -86,7 +86,6 @@ const Configuration = ({ previewBox, activeLightSource = 1 }) => {
     if (!isValidColor(color)) {
       return
     }
-    let angle, positionX, positionY
     const darkColor = colorLuminance(color, colorDifference * -1)
     const lightColor = colorLuminance(color, colorDifference)
 
@@ -95,34 +94,17 @@ const Configuration = ({ previewBox, activeLightSource = 1 }) => {
     const secondGradientColor =
       gradient && shape !== 1 ? colorLuminance(color, shape === 2 ? 0.07 : -0.1) : color
 
-    // TODO: replace with a map
-    switch (activeLightSource) {
-      case 1:
-        positionX = distance
-        positionY = distance
-        angle = 145
-        break
-      case 2:
-        positionX = distance * -1
-        positionY = distance
-        angle = 225
-        break
-      case 3:
-        positionX = distance * -1
-        positionY = distance * -1
-        angle = 315
-        break
-      case 4:
-        positionX = distance
-        positionY = distance * -1
-        angle = 45
-        break
-      default:
-        positionX = distance
-        positionY = distance
-        angle = 145
-        break
-    }
+    const lightSourceMap = new Map([
+      [1, { positionX: distance, positionY: distance, angle: 145 }],
+      [2, { positionX: -distance, positionY: distance, angle: 225 }],
+      [3, { positionX: -distance, positionY: -distance, angle: 315 }],
+      [4, { positionX: distance, positionY: -distance, angle: 45 }],
+      ['default', { positionX: distance, positionY: distance, angle: 145 }]
+    ])
+
+    // Accessing the values based on activeLightSource
+    const { positionX, positionY, angle } =
+      lightSourceMap.get(activeLightSource) || lightSourceMap.get('default')
 
     colorInput.current.value = color
 
@@ -284,15 +266,6 @@ box-shadow: ${firstBoxShadow},
         </label>
         <textarea id="code-container" ref={codeContainer} value={codeString} readOnly></textarea>
       </div>
-      <a
-        href="https://uxdesign.cc/neumorphism-in-user-interfaces-b47cef3bf3a6"
-        className="link"
-        target="_blank"
-        rel="noopener"
-        onclick="getOutboundLink('https://uxdesign.cc/neumorphism-in-user-interfaces-b47cef3bf3a6'); return true;"
-      >
-        <span className="pr-1 opacity-60">Read more about</span> <b>Neumorphism</b>
-      </a>
     </div>
   )
 }

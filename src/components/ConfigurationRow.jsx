@@ -1,11 +1,11 @@
 import React from 'react'
-import { camelize } from './utils'
+import { camelize } from '../utils'
 
 const ConfigurationRow = ({ label, type, value, min, max, step = '1', onChange }) => {
   return (
     <div className="row">
       <label htmlFor={camelize(label)} className="opacity-60">
-        {label}{' '}
+        {label}
       </label>
       <input
         type={type}

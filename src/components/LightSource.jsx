@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const LightSource = styled.div`
+const LightSource = styled.div`
   position: absolute;
   left: ${props => props.left};
   top: ${props => props.top};
@@ -25,3 +25,5 @@ export const LightSource = styled.div`
     background: #ffff00;
   }
 `
+
+export default LightSource

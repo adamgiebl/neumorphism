@@ -1,4 +1,3 @@
-// Variables
 $maindark: var(--maindark);
 $grey: var(--grey);
 $lightgray: var(--lightgray);
@@ -9,7 +8,6 @@ $red: var(--red);
 $blue: var(--blue);
 $border-radius: var(--border-radius);
 
-// Mixins
 @mixin flex-center {
   display: flex;
   align-items: center;
