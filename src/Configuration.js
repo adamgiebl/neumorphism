@@ -10,7 +10,8 @@ SyntaxHighlighter.registerLanguage('css', css)
 
 const Configuration = ({ previewBox, activeLightSource = 1 }) => {
   const [blur, setBlur] = useState(60)
-  const [color, setColor] = useState(getColorFromRoute() || '#e0e0e0')
+  const defaultColor = '#e0e0e0'
+  const [color, setColor] = useState(getColorFromRoute() || defaultColor)
   const [size, setSize] = useState(300)
   const [radius, setRadius] = useState(50)
   const [shape, setShape] = useState(0)
@@ -177,7 +178,9 @@ box-shadow: ${firstBoxShadow},
   return (
     <div className="configuration soft-shadow">
       <div className="row">
-        <label htmlFor="color">Pick a color:</label>
+        <label htmlFor="color" className="opacity-60">
+          Pick a color
+        </label>
         <input
           type="color"
           name="color"
@@ -186,7 +189,7 @@ box-shadow: ${firstBoxShadow},
           value={color}
           id="color"
         />
-        <label htmlFor="colorInput" style={{ paddingLeft: '10px' }}>
+        <label htmlFor="colorInput" style={{ paddingLeft: '10px' }} className="opacity-60">
           or
         </label>
         <input
@@ -197,6 +200,22 @@ box-shadow: ${firstBoxShadow},
           ref={colorInput}
           onChange={colorOnChange}
         />
+        {color !== defaultColor && (
+          <button
+            onClick={() => {
+              setColor(defaultColor)
+            }}
+            className="h-[32px] flex items-center gap-1.5 px-2 py-1 ml-3 text-xs text-[var(--textColor)] border-[3px] bg-[var(--baseColor)] border-[var(--textColor)]"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" className="w-4 h-4">
+              <path
+                fill="currentColor"
+                d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+              />
+            </svg>
+            Reset
+          </button>
+        )}
       </div>
       <ConfigurationRow
         label={'Size'}
@@ -241,7 +260,20 @@ box-shadow: ${firstBoxShadow},
       />
       <ShapeSwitcher shape={shape} setShape={handleShape} />
       <div className={`code-block ${theme.current ? '' : 'small'}`} ref={code}>
-        <button className="copy" onClick={copyToClipboard}>
+        <button
+          className="flex items-center gap-1.5 text-white copy text-xs"
+          onClick={copyToClipboard}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 448 512"
+            className="w-3 h-3 text-white"
+          >
+            <path
+              fill="currentColor"
+              d="M384 336l-192 0c-8.8 0-16-7.2-16-16l0-256c0-8.8 7.2-16 16-16l140.1 0L400 115.9 400 320c0 8.8-7.2 16-16 16zM192 384l192 0c35.3 0 64-28.7 64-64l0-204.1c0-12.7-5.1-24.9-14.1-33.9L366.1 14.1c-9-9-21.2-14.1-33.9-14.1L192 0c-35.3 0-64 28.7-64 64l0 256c0 35.3 28.7 64 64 64zM64 128c-35.3 0-64 28.7-64 64L0 448c0 35.3 28.7 64 64 64l192 0c35.3 0 64-28.7 64-64l0-32-48 0 0 32c0 8.8-7.2 16-16 16L64 464c-8.8 0-16-7.2-16-16l0-256c0-8.8 7.2-16 16-16l32 0 0-48-32 0z"
+            />
+          </svg>
           Copy
         </button>
         <SyntaxHighlighter language="css" style={theme.current ? Dark : Light}>
@@ -259,7 +291,7 @@ box-shadow: ${firstBoxShadow},
         rel="noopener"
         onclick="getOutboundLink('https://uxdesign.cc/neumorphism-in-user-interfaces-b47cef3bf3a6'); return true;"
       >
-        Read more about <b>Neumorphism</b>
+        <span className="pr-1 opacity-60">Read more about</span> <b>Neumorphism</b>
       </a>
     </div>
   )
