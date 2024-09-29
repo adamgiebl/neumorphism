@@ -51,26 +51,29 @@ const navigation = {
   ]
 }
 
-export default function Footer() {
+const Footer = () => {
   return (
-    <footer aria-labelledby="footer-heading" className="text-[var(--textColor)]">
+    <footer
+      aria-labelledby="footer-heading"
+      className="bg-[var(--baseColor)] text-[var(--textColor)] "
+    >
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
-      <div className="max-w-full px-6 pt-16 pb-8 mx-auto sm:pt-24 lg:px-8 lg:pt-32">
+      <div className="max-w-full px-6 pt-16 pb-8 mx-auto sm:pt-24 lg:px-8 lg:pt-32 ">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-8">
             <img src="/apple-touch-icon.png" alt="icon" className="w-10 h-10" />
             <p className="text-sm leading-6 opacity-70">
               Neumorphism.io - Generate neumorphic designs
             </p>
-            <div className="flex space-x-6">
+            <div className="flex space-x-6 opacity-70">
               {navigation.social.map(item => (
                 <a
                   key={item.name}
                   href={item.href}
                   target="_blank"
-                  className="opacity-60 hover:opacity-70"
+                  className="hover:opacity-80"
                   rel="noreferrer"
                 >
                   <span className="sr-only">{item.name}</span>
@@ -85,14 +88,14 @@ export default function Footer() {
             </div>
             <div className="grid grid-cols-2 gap-8">
               <div>
-                <h3 className="text-sm font-semibold leading-6 opacity-90">Resources</h3>
-                <ul className="mt-6 space-y-4">
+                <h3 className="text-sm font-semibold leading-6">Resources</h3>
+                <ul className="mt-6 space-y-4 opacity-70">
                   {navigation.resources.map(item => (
                     <li key={item.name}>
                       <a
                         href={item.href}
                         target="_blank"
-                        className="text-sm leading-6 opacity-70 hover:opacity-80"
+                        className="text-sm leading-6 hover:opacity-80"
                         rel="noreferrer"
                       >
                         {item.name}
@@ -102,14 +105,14 @@ export default function Footer() {
                 </ul>
               </div>
               <div className="md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 opacity-90">Other Elements</h3>
-                <ul className="mt-6 space-y-4">
+                <h3 className="text-sm font-semibold leading-6">Other Elements</h3>
+                <ul className="mt-6 space-y-4 opacity-70">
                   {navigation.elements.map(item => (
                     <li key={item.name}>
                       <a
                         href={item.href}
                         target="_blank"
-                        className="text-sm leading-6 opacity-70 hover:opacity-80"
+                        className="text-sm leading-6 hover:opacity-80"
                         rel="noreferrer"
                       >
                         {item.name}
@@ -130,3 +133,5 @@ export default function Footer() {
     </footer>
   )
 }
+
+export default Footer

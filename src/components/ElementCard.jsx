@@ -17,7 +17,7 @@ export const code = className => (
   </svg>
 )
 
-export const ElementCard = props => {
+const ElementCard = props => {
   const {
     html,
     css,
@@ -62,7 +62,7 @@ export const ElementCard = props => {
         href={link}
         target="_blank"
         rel="noopener noreferrer"
-        className="font-bold get-code bg-dark-400"
+        className="font-bold get-code bg-[var(--baseColor)] opacity-80 text-[var(--textColor)]"
       >
         {code('w-[20px] h-[20px]')} Get code
       </a>
@@ -78,3 +78,5 @@ export const ElementCard = props => {
     </div>
   )
 }
+
+export default ElementCard

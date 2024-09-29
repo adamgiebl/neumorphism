@@ -1,15 +1,9 @@
-// Variables
-$maindark: var(--maindark);
 $grey: var(--grey);
 $lightgray: var(--lightgray);
 $offwhite: var(--offwhite);
 $dark: var(--dark);
-$green: var(--green);
-$red: var(--red);
-$blue: var(--blue);
 $border-radius: var(--border-radius);
 
-// Mixins
 @mixin flex-center {
   display: flex;
   align-items: center;
@@ -58,7 +52,6 @@ $border-radius: var(--border-radius);
     font-weight: var(--semibold);
     display: flex;
     align-items: center;
-    color: var(--offwhite);
     padding: 4px 8px;
     border-radius: var(--border-radius);
     gap: 5px;
@@ -95,14 +88,13 @@ $border-radius: var(--border-radius);
   &.dark-background {
     .card-content,
     .card__button-container {
-      background: $dark;
+      background: var(--dark);
     }
   }
 
   &__button-container {
     width: 100%;
     height: 100%;
-    background: $lightgray;
     position: relative;
     @include flex-center;
     cursor: pointer;

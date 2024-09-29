@@ -43,7 +43,6 @@ body {
   font-optical-sizing: auto;
   font-style: normal;
   margin: 0;
-  padding-top: 40px;
 
   @media only screen and (min-height: 800px) {
     justify-content: center;
@@ -75,19 +74,19 @@ body {
 
 .title {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 45px;
   margin-top: 20px;
   z-index: 1;
+  h1 {
+    font-size: 35px;
+  }
+  h2 {
+    font-size: 25px;
+  }
 
   @media only screen and (min-width: 1200px) {
     margin-bottom: 60px;
-    margin-top: 0;
-    h1 {
-      font-size: 35px;
-    }
-    h2 {
-      font-size: 25px;
-    }
+    margin-top: 15px;
   }
 
   @media only screen and (max-width: 680px) and (max-height: 800px) {
@@ -368,5 +367,4 @@ body {
 }
 
 @import './styles/inputs.scss';
-@import './styles/footer.scss';
-@import './styles/Card.scss';
+@import './styles/card.scss';

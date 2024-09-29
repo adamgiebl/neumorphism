@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { ElementCard } from './ElementCard'
+import ElementCard from './ElementCard'
 
 const UiverseElements = () => {
   const [elements, setElements] = useState([])
@@ -30,8 +30,7 @@ const UiverseElements = () => {
     <>
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div className="space-y-1 text-start">
-          <h2 className="text-3xl font-black">Examples</h2>
-          <p className="text-base opacity-60">Examples of Neumorphism elements</p>
+          <h2 className="mb-4 text-3xl font-bold">Examples</h2>
         </div>
         <a
           href="https://uiverse.io/elements?tags=neumorphism"
@@ -39,7 +38,7 @@ const UiverseElements = () => {
           rel="noopener noreferrer"
           className="px-4 py-2 border whitespace-nowrap rounded-md flex items-center gap-2 font-semibold border-[color:var(--textColor)] text-[color:var(--textColor)] hover:bg-[color:var(--textColor)] hover:text-[color:var(--baseColor)]"
         >
-          Browse all{' '}
+          Browse all
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="w-4 h-4">
             <path
               fill="currentColor"
@@ -60,7 +59,7 @@ const UiverseElements = () => {
           rel="noopener noreferrer"
           className="px-4 py-2 border font-semibold rounded-md flex items-center gap-2 border-[color:var(--textColor)] text-[color:var(--textColor)] hover:bg-[color:var(--textColor)] hover:text-[color:var(--baseColor)]"
         >
-          Browse all{' '}
+          Browse all
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="w-4 h-4">
             <path
               fill="currentColor"
