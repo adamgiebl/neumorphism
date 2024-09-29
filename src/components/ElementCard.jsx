@@ -62,7 +62,7 @@ const ElementCard = props => {
         href={link}
         target="_blank"
         rel="noopener noreferrer"
-        className="font-bold get-code bg-[var(--baseColor)] opacity-80"
+        className="font-bold get-code bg-[var(--baseColor)] opacity-80 text-[var(--textColor)]"
       >
         {code('w-[20px] h-[20px]')} Get code
       </a>
