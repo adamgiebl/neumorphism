@@ -26,7 +26,7 @@ const App = () => {
         <div className="container max-w-screen-lg px-6 mx-auto mt-24">
           <section className="mb-24 text-left">
             <h2 className="mb-4 text-3xl font-bold">What is Neumorphism?</h2>
-            <p className="text-base leading-relaxed">
+            <p className="max-w-4xl text-base leading-relaxed">
               Neumorphism, also known as soft UI, is a visual design trend that combines elements of
               skeuomorphism and flat design. It creates a soft, extruded plastic look by using
               subtle contrasting shadows to create the illusion of depth. This style mimics physical

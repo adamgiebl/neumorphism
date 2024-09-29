@@ -85,8 +85,8 @@ body {
   }
 
   @media only screen and (min-width: 1200px) {
-    margin-bottom: 60px;
-    margin-top: 15px;
+    margin-bottom: 50px;
+    margin-top: 35px;
   }
 
   @media only screen and (max-width: 680px) and (max-height: 800px) {
@@ -122,7 +122,6 @@ body {
   h2 {
     font-weight: normal;
     margin: 0;
-    margin-top: 5px;
     font-size: 21px;
   }
 }
@@ -183,7 +182,7 @@ body {
     .configuration {
       display: flex;
       flex-direction: column;
-      padding: 20px 30px;
+      padding: 24px 30px 30px 30px;
       border-radius: 30px;
       text-align: left;
       position: relative;

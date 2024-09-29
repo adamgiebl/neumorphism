@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import ElementCard from './ElementCard'
+import { MOCKED_RESPONSE } from '../mocks/api'
 
 const UiverseElements = () => {
   const [elements, setElements] = useState([])
@@ -8,15 +9,13 @@ const UiverseElements = () => {
     try {
       const response = await fetch('https://uiverse.io/resource/neumorphism-elements')
       if (!response.ok) {
-        setElements([])
-        return
+        throw new Error('Failed to fetch data')
       }
       const data = await response.json()
-
       setElements(data?.posts || [])
     } catch (e) {
       console.error('Error fetching Uiverse elements:', e)
-      setElements([])
+      setElements(MOCKED_RESPONSE.posts || [])
     }
   }, [])
 
@@ -30,7 +29,8 @@ const UiverseElements = () => {
     <>
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div className="space-y-1 text-start">
-          <h2 className="mb-4 text-3xl font-bold">Examples</h2>
+          <h2 className="text-3xl font-black">Examples</h2>
+          <p className="text-base opacity-60">Explore our collection of Neumorphism designs</p>
         </div>
         <a
           href="https://uiverse.io/elements?tags=neumorphism"

@@ -47,7 +47,7 @@ const ElementCard = props => {
         theme === 'dark' && 'dark-background'
       }`}
     >
-      <div className={`card-content grow w-full ${className}`}>
+      <div className={`card-content min-h-[420px] grow w-full ${className}`}>
         <div className="w-full text-black clickable-wrapper">
           <ShadowDOMContent
             css={css}
@@ -62,13 +62,13 @@ const ElementCard = props => {
         href={link}
         target="_blank"
         rel="noopener noreferrer"
-        className="font-bold get-code bg-[var(--baseColor)] opacity-80 text-[var(--textColor)]"
+        className="font-bold get-code bg-[var(--baseColor)] text-[var(--textColor)]"
       >
         {code('w-[20px] h-[20px]')} Get code
       </a>
 
       <div className="flex items-center justify-between gap-1 mt-1 card__views">
-        <p className="text-base font-semibold">{user?.username}</p>
+        <p className="text-base font-semibold opacity-80">{user?.username}</p>
         {viewCount > 0 && (
           <span className="text-sm font-normal opacity-60">
             {formatter.format(viewCount)} views
