@@ -20,7 +20,6 @@ or
 
 ```
 yarn install
-```
 
 ### Running the project
 
